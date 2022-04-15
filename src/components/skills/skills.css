@@ -1,0 +1,95 @@
+.skills__container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:2.5rem;
+}
+
+.skills__container > div{
+    background: var(--color-bg-variant);
+    padding: 2.4rem 4rem;
+    border-radius: 2rem;
+    border: 1px solid transparent;
+    transition: var(--transition);
+    box-shadow: 13px 13px 30px 0px #00000054;
+}
+
+.skills__container  > div:hover {
+    /* background: transparent; */
+    border-color:var(--color-primary-variant);
+    cursor:default;
+    animation: pulsate 5s ease-in-out;
+    
+
+}
+@keyframes pulsate{
+    0%{
+        box-shadow:
+        0 0 25px #5ddcff, 
+        0 0 50px #4e00c2;
+    }
+}
+
+.skills__container > div h3 {
+    text-align:center;
+    margin-bottom: 2rem;
+    color: var(--color-primary);
+}
+
+.skills__content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 2.5rem;
+}
+
+.skills__details{
+    display:flex;
+    gap: 1rem;
+}
+
+.skills__details-icon{
+    margin-top:12px;
+    color: var(--color-primary);
+}
+
+/* ====================================== MEDIA QUERIES (MEDIUM DEVICES) =======================*/
+
+@media screen and (max-width:1024px){
+    .skills__container{
+        grid-template-columns: 1fr;
+    }
+    .skills__container > div{
+        width:80%;
+        padding: 2rem;
+        margin: 0 auto;
+    }
+
+    .skills__content{
+        padding: 1rem;
+        grid-template-columns:1fr 1fr;
+
+    }
+    
+}
+
+/* ====================================== MEDIA QUERIES (SMALL DEVICES) ================================ */
+
+@media screen and (max-width:600) {
+
+    .skills__container{
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .skills__container > div{
+        width: 100%;
+        padding: 1rem 1rem;
+    }
+
+    
+    .skills__content{
+        padding: 0.5rem;
+        /* grid-template-columns:1fr; */
+        
+
+    }
+}

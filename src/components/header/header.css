@@ -1,0 +1,172 @@
+header {
+    height: 100vh;
+    padding-top: 0.1rem;
+    overflow: hidden;
+}
+
+.header__container {
+    text-align: center;
+    height: 100%;
+    position: relative;
+}
+.header__container h5{
+    padding-top: 0.7rem;
+    font-size: 1rem;
+}
+
+/* FOR THE H5 TAGS */
+.i-title{
+    height: 50px;
+    overflow: hidden;
+}
+.i-item{
+    height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--color-light);
+}
+.i-title-wrapper{
+    height: 100%;
+    animation: move 15s ease-in-out infinite alternate;
+}
+
+@keyframes move {
+    25% {
+        transform: translateY(-50px);
+    }
+    50% {
+        transform: translateY(-100px);
+    }
+    75% {
+        transform: translateY(-150px);
+    }
+    100% {
+        transform: translateY(-200px);
+    }
+}
+
+/* ======================== CTA ======================== */
+
+.cta {
+    margin-top:0.1rem;
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center; 
+}
+/* =============== HEADER SOCIALS =============================== */
+
+.header__socials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    position: absolute;
+    left: 0;
+    bottom: 7rem;
+}
+
+
+.header__socials::after{
+    content: '';
+    width: 1px;
+    height:2rem;
+    background: var(--color-primary);
+}
+
+/* ===================== IMAGE =============================== */
+.me{
+    background: linear-gradient(var(--color-primary), transparent);
+    width: 22rem;
+    height: 30rem;
+    position: absolute;
+    left: calc(50% - 11rem);
+    margin-top: 3rem;
+    border-radius: 12rem 12rem 0 0;
+    overflow: hidden;
+} 
+
+.AS{
+    width:80px;
+    height:64px;
+    margin-left:-9rem;
+    margin-top:2rem;
+    position: absolute;
+    /* justify-content: flex-end; */
+}
+
+/*========================= SCROLL DOWN============================ */
+.scroll__down {
+    position: absolute;
+    right:-2.3rem;
+    bottom: 6rem;
+    transform: rotate(90deg);
+    font-weight: 200;
+    font-size: 0.9rem;
+}
+
+/* ========================= MEDIA QUERIES(X-LARGE DEVICES) ================================= */
+@media screen and (max-width: 2000px) {
+    header{
+        height: 100vh;
+    }
+    .header__socials, .scroll__down{
+        bottom: 16rem;
+    }
+    .AS{
+       height: 100vh;
+    }
+}
+
+
+/* ========================= MEDIA QUERIES(LARGE DEVICES) ================================= */
+@media screen and (max-width: 1600px) {
+    header{
+        height: 100vh;
+    }
+    .header__socials, .scroll__down{
+        bottom: 6rem;
+    }
+    /* .AS{
+       height: 55px;
+       width: 55px;
+       margin-left: -1rem;
+       margin-top: 1rem;
+    } */
+}
+
+
+/* ========================= MEDIA QUERIES(MEDIUM DEVICES) ================================= */
+@media screen and (max-width: 1024px) {
+    header{
+        height: 100vh;
+    }
+    .header__socials, .scroll__down{
+        bottom: 6rem;
+    }
+    
+    .AS{
+       height: 55px;
+       width: 55px;
+       margin-left: -1rem;
+       margin-top: 1rem;
+    }
+}
+
+
+
+/* ========================= MEDIA QUERIES(SMALL DEVICES) ================================= */
+@media screen and (max-width: 600px) {
+    header{
+        height: 100vh;
+    }   
+    
+    .header__socials, .scroll__down {
+        display: none;
+    }
+    .AS{
+       height: 35px;
+       width: 35px;
+       margin-left: 0.2rem;
+       margin-top: 0.5rem;
+    }
+}
