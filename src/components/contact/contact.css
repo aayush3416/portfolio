@@ -32,7 +32,10 @@
 .contact__option:hover {
     /* background: transparent; */
     border-color: var(--color-primary-variant);
-    animation: pulsate 5s ease-in-out ;
+    /* animation: pulsate 5s ease-in-out ; */
+     box-shadow:
+        0 0 25px #8e8eff, 
+        0 0 50px #c49cff8a
 }
 
 .contact__option-icon {

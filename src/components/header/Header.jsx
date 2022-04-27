@@ -19,7 +19,7 @@ const Header = () => {
             <h5 className="i-item">Software Developer</h5>
             <h5 className="i-item">A Student</h5>
             <h5 className="i-item">A Leader</h5>
-            <h5 className="i-item">A Innovator</h5>
+            <h5 className="i-item">An Innovator</h5>
             <h5 className="i-item">Constant Learner</h5>
           </div>
         </div>
