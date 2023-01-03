@@ -38,7 +38,7 @@ const About = () => {
             </article>
           </div>
           <p>
-            Hello! I am a first-year Mechatronics Engineering student at the
+            Hello! I am a second-year Mechatronics Engineering student at the
             University of Waterloo, where I intend to specialize into Software
             Engineering or Artificial Intelligence. I am really interested in
             software development, machine learning, and machine design, and I

@@ -14,7 +14,7 @@ export const App = () => {
         <Header/>
         <Nav/>
         <About/>
-        <Skills/>
+        {/* <Skills/> */}
         <Experience/>
         <Portfolio/>
         <Contact/>

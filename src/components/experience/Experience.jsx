@@ -25,7 +25,39 @@ const Experience = () => {
         pagination={{ clickable: true }}
       >
         <SwiperSlide className="experience">
-          <h3 className="company_name">Software Engineering Intern - Accipiter Radar Technologies</h3>
+          <h3 className="company_name">
+            Software Engineering Intern - KI3 Photonics Technologies
+          </h3>
+          <h5 className="date">Sept 2022 - Dec 2022</h5>
+          <small className="company_review">
+            <p>
+              • Developed a web app using Flask and JavaScript that can accept
+              1000+ OpenQASM 2.0 strings and generate the resulting quantum
+              circuit with the ability to modify the circuit while hosted,
+              enhancing user accessibility by 45%.
+            </p>
+            <p>
+              • Redesigned the company’s visualization package to include
+              Matplotlib to enable circuit visualizations, circuit comparisons,
+              and circuit-directed acyclic graphs, helping 6+ senior developers
+              reduce debugging times by 65%.
+            </p>
+            <p>
+              • Implemented a Gradient Descent algorithm that can calculate the
+              gradient in parameter optimization, which outperforms current
+              parameter search algorithms in terms of computing speeds, while
+              increasing test accuracy by 37%
+            </p>
+            <p>
+              • Performed test-driven development using A/B testing to validate
+              quantum circuits, ensuring 89.2% code coverage.
+            </p>
+          </small>
+        </SwiperSlide>
+        <SwiperSlide className="experience">
+          <h3 className="company_name">
+            Software Engineering Intern - Accipiter Radar Technologies
+          </h3>
           <h5 className="date">Jan 2022 - Apr 2022</h5>
           <small className="company_review">
             <p>
@@ -51,7 +83,9 @@ const Experience = () => {
           </small>
         </SwiperSlide>
         <SwiperSlide className="experience">
-          <h3 className="company_name">Software Developer - Waterloo Rocketry Team</h3>
+          <h3 className="company_name">
+            Software Developer - Waterloo Rocketry Team
+          </h3>
           <h5 className="date">Feb 2022 - Present</h5>
           <small className="company_review">
             <p>
@@ -72,7 +106,8 @@ const Experience = () => {
         </SwiperSlide>
         <SwiperSlide className="experience">
           <h3 className="company_name">
-            Vice-President Of Computer Science Club - CastleBrooke Secondary School
+            Vice-President Of Computer Science Club - CastleBrooke Secondary
+            School
           </h3>
           <h5 className="date">Sept 2020 - Apr 2021</h5>
           <small className="company_review">
@@ -87,8 +122,8 @@ const Experience = () => {
               and user-friendly
             </p>
             <p>
-              • Designed various challenges and hackathons to put their knowledge
-              and abilities to the test
+              • Designed various challenges and hackathons to put their
+              knowledge and abilities to the test
             </p>
           </small>
         </SwiperSlide>
