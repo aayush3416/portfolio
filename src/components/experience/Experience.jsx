@@ -26,6 +26,52 @@ const Experience = () => {
       >
         <SwiperSlide className="experience">
           <h3 className="company_name">
+            Software Engineering Intern - Super.com
+          </h3>
+          <h5 className="date">Sept 2022 - Dec 2022</h5>
+          <small className="company_review">
+            <p>
+              • Developed an onboarding feature using React & Typescript impacting 330k DAU by introducing a Cash for Tasks completion system,
+                resulting in a surge in user engagement and a 30% boost in conversion rate, calculated via Amplitude
+            </p>
+            <p>
+              • Created a API webhook using Flask and integrated a new banned users database table (PostgreSQL), to automatically exclude an
+                average of 150+ banned users weekly from viewing offers, validated through rigorous Postman testing
+            </p>
+            <p>
+              • Implemented a secure validation postback hash mechanism for a key partner, safeguarding the integrity of incoming data with over
+                95% accuracy, and spearheaded the development of corresponding unit and integration tests to automate verification processes
+            </p>
+          </small>
+        </SwiperSlide>
+        <SwiperSlide className="experience">
+          <h3 className="company_name">
+            Machine Learning Engineering Intern - Healthcare Systems R & A
+          </h3>
+          <h5 className="date">Sept 2022 - Dec 2022</h5>
+          <small className="company_review">
+            <p>
+              • Built a Matplotlib Heatmap feature, enhancing data visualization for 15+ geologists,
+                leading to precise mineral pattern predictions
+            </p>
+            <p>
+              • Streamlined data handling with a predictive imputation algorithm, boosting accuracy by 35%,
+                reducing preprocessing time by 55%
+            </p>
+            <p>
+              • Implemented a Gradient Descent algorithm that can calculate the
+              gradient in parameter optimization, which outperforms current
+              parameter search algorithms in terms of computing speeds, while
+              increasing test accuracy by 37%
+            </p>
+            <p>
+              • Improved GNN training through TensorFlow, achieving a reduction in train time
+              from 2 hours to 10 minutes across 4000 epochs
+            </p>
+          </small>
+        </SwiperSlide>
+        <SwiperSlide className="experience">
+          <h3 className="company_name">
             Software Engineering Intern - KI3 Photonics Technologies
           </h3>
           <h5 className="date">Sept 2022 - Dec 2022</h5>
