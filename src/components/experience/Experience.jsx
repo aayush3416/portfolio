@@ -28,7 +28,7 @@ const Experience = () => {
           <h3 className="company_name">
             Software Engineering Intern - Super.com
           </h3>
-          <h5 className="date">Sept 2022 - Dec 2022</h5>
+          <h5 className="date">Jan 2024 - Apr 2022</h5>
           <small className="company_review">
             <p>
               • Developed an onboarding feature using React & Typescript impacting 330k DAU by introducing a Cash for Tasks completion system,
@@ -48,7 +48,7 @@ const Experience = () => {
           <h3 className="company_name">
             Machine Learning Engineering Intern - Healthcare Systems R & A
           </h3>
-          <h5 className="date">Sept 2022 - Dec 2022</h5>
+          <h5 className="date">May 2023 - Aug 2023</h5>
           <small className="company_review">
             <p>
               • Built a Matplotlib Heatmap feature, enhancing data visualization for 15+ geologists,
