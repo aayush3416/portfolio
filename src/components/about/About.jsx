@@ -22,7 +22,7 @@ const About = () => {
             <article className="about__card">
               <FaAward className="about__icon" />
               <h5>Experience</h5>
-              <small>1+ Years Working</small>
+              <small>3+ Years</small>
             </article>
 
             <article className="about__card">
@@ -38,22 +38,15 @@ const About = () => {
             </article>
           </div>
           <p>
-            Hello! I am a second-year Mechatronics Engineering student at the
+            Hello! I am a third-year Mechatronics Engineering student at the
             University of Waterloo, where I intend to specialize into Software
-            Engineering or Artificial Intelligence. I am really interested in
-            software development, machine learning, and machine design, and I
-            enjoy working on projects that are related to these disciplines. I
-            aspire to apply the knowledge I learn to create various apps,
-            platforms, and media to change our world. I am a dedicated,
-            persistent, and enthusiastic team member that strives to overcome
-            difficulties and improve team morale wherever feasible. Through work
-            experience and extracurricular activities, I have acquired excellent
-            interpersonal and analytical skills, which will inevitably help me
-            thrive in the work force. I am always looking for new opportunities,
+            Engineering or Artificial Intelligence. I am firm beliver and working
+            smart and not hard. I am always looking for new opportunities,
             so feel free to reach out!
+
           </p>
 
-          <a href="#contact" className="btn btn-primary">
+          <a href="#footer" className="btn btn-primary">
             Let's Talk
           </a>
         </div>

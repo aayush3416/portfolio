@@ -14,7 +14,7 @@ footer a {
 }
 
 .footer__logo{
-    font-size:2rem;
+    font-size:1.5rem;
     font-weight: 500;
     margin-bottom:2rem;
     display: inline-block;
@@ -74,14 +74,14 @@ footer a {
 .footer__socials a:hover{
     /* animation: pulsate 2s ease-in-out infinite; */
      box-shadow:
-        0 0 25px #8e8eff, 
+        0 0 25px #8e8eff,
         0 0 50px #c49cff8a
 
 }
 @keyframes pulsate{
     0%{
         box-shadow:
-        0 0 25px #5ddcff, 
+        0 0 25px #5ddcff,
         0 0 50px #4e00c2;
     }
 }

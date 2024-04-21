@@ -28,7 +28,7 @@ const Experience = () => {
           <h3 className="company_name">
             Software Engineering Intern - Super.com
           </h3>
-          <h5 className="date">Jan 2024 - Apr 2022</h5>
+          <h5 className="date">Jan 2024 - Apr 2024</h5>
           <small className="company_review">
             <p>
               • Developed an onboarding feature using React & Typescript impacting 330k DAU by introducing a Cash for Tasks completion system,

@@ -1,25 +1,18 @@
 import React from 'react'
 import './footer.css'
 import { BsLinkedin, BsGithub } from "react-icons/bs";
-import { FaBlogger } from "react-icons/fa";
+import {MdOutlineEmail} from 'react-icons/md'
 const Footer = () => {
   return (
-    <footer>
-      <a href="#" className='footer__logo'>AAYUSH SONI</a>
+    <section id="footer">
 
-      <ul className='permalinks'>
-        <li><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#experiences">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+    <footer>
+      <p className='footer__logo'>Feel free to Contact me! I am always looking to make new connections :)</p>
 
       <div className='footer__socials'>
-        <a href="https://github.com/aayush3416"><BsGithub/></a>
-        <a className="link_icon" href="https://www.linkedin.com/in/aayush-soni-a9a8a817b/"><BsLinkedin/></a>
-        <a className="blog_icon" href="https://aayush-blog.herokuapp.com/"><FaBlogger/></a>
+        <a href="https://github.com/aayush3416" target='_blank'><BsGithub/></a>
+        <a className="link_icon" href="https://www.linkedin.com/in/aayush-soni-8282bb200/" target='_blank'><BsLinkedin/></a>
+        <a className="email_icon" href="mailto:aayush.soni@uwaterloo.ca" target="_blank"><MdOutlineEmail/></a>
       </div>
 
       <div className='footer__socials'>
@@ -28,6 +21,7 @@ const Footer = () => {
         </small>
       </div>
     </footer>
+    </section>
   )
 }
 
