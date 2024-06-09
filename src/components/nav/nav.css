@@ -1,26 +1,28 @@
 nav {
     background: rgba(0, 0, 0, 0.3);
-    width: max-content;
-    display: block;
-    padding: 0.7rem 1.7rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
     z-index: 2;
     position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 2rem;
-    display: flex;
-    gap: 0.8rem;
-    border-radius: 3rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    gap: 2rem;
+    border-radius: 0 0 1rem 1rem;
     backdrop-filter: blur(15px);
 }
 
 nav a {
     background: transparent;
-    padding: 0.9em;
-    border-radius: 50%;
-    display: flex;
+    padding: 0.7rem 1.4rem;
+    border-radius: 0.5rem;
+    display: inline-block;
     color: var(--color-light);
     font-size: 1.1rem;
+    text-decoration: none;
+    text-align: center;
 }
 
 nav a:hover {
@@ -29,8 +31,5 @@ nav a:hover {
 
 nav a.active {
     background: var(--color-primary);
-    color: var(--color-bg)
+    color: var(--color-bg);
 }
-body {
-    overflow: hidden;
-  }

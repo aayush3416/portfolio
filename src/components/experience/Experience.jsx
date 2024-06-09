@@ -1,181 +1,104 @@
-import React from 'react'
-import './experience.css'
-import { Pagination, Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "swiper/css/scrollbar";
-
+import React, { useState } from 'react';
+import './experience.css';
+import { FaLink, FaLinkedin } from 'react-icons/fa';
 
 const Experience = () => {
+  const experiences = [
+    {
+      title: "Software Engineering Intern",
+      company: "Super.com",
+      date: "Jan 2024 - Apr 2024",
+      details: [
+        "At Super.com, I developed a Cash for Tasks onboarding feature using React and Typescript, increasing user engagement and conversion rates by 30%. I optimized the rewards-engine backend with Apache Kafka, improving processing speed and achieving a 99.99% success rate. I also conducted A/B testing to enhance user retention, implemented a secure validation mechanism for partner data, and created a Flask API webhook integrated with a PostgreSQL database to exclude malicious users."
+      ],
+      website: "https://www.super.com/",
+      linkedin: "https://www.linkedin.com/company/superdotcom/"
+    },
+    {
+      title: "Software Engineering Intern",
+      company: "Healthcare Systems R & A",
+      date: "May 2023 - Apr 2023",
+      details: [
+        "During my internship at Healthcare Systems R & A, I built a Matplotlib heatmap feature that improved data visualization for geologists, aiding in precise mineral pattern predictions. I streamlined data handling with a predictive imputation algorithm, boosting the f1 score and reducing preprocessing time. Additionally, I optimized GNN training using TensorFlow tools, significantly reducing training time."
+      ],
+      website: "http://www.healthcare-systems.ca/team.html",
+      linkedin: "https://www.linkedin.com/company/healthcare-systems-r-a/"
+    },
+    {
+      title: "Software Engineering Intern",
+      company: "Ki3 Photonics Technologies",
+      date: "Sept 2022 - Dec 2022",
+      details: [
+        "At Ki3 Photonics Technologies, I architected a web app for real-time quantum circuit customization using JavaScript and Flask. I enhanced the efficiency of quantum circuits through advanced optimization techniques using Python and TensorFlow Quantum. Furthermore, I implemented automated testing and CI workflows with Jest, Mocha, and Jenkins, achieving high code coverage."
+      ],
+      website: "https://www.ki3photonics.com/",
+      linkedin: "https://www.linkedin.com/company/ki3-photonics-technologies-inc/"
+    },
+    {
+      title: "Software Engineering Intern",
+      company: "Accipiter Radar Technologies",
+      date: "Jan 2022 - Apr 2022",
+      details: [
+        "While interning at Accipiter Radar Technologies, I built a Golang server capable of handling high request volumes, optimized query execution with DQL, and integrated the data with Angular for client display. I also developed an application to encrypt paystubs using the PYPDF2 library, saving the Accounting Department significant time bi-weekly. Additionally, I worked in an Agile environment to fix numerous bugs, reducing application failures using Typescript and Angular."
+      ],
+      website: "https://www.accipiterradar.com/",
+      linkedin: "https://www.linkedin.com/company/accipiter-radar/"
+    },
+    {
+      title: "Software Engineering Intern",
+      company: "Waterloo Rocketry Team",
+      date: "Jan 2022 - Present",
+      details: [
+        "I developed a Slackbot to handle team meetings, commands, and reminders using Node.js, Express, and AWS. I designed the Slackbot to utilize AWS Lambda Functions for listening to HTTP requests from Slack and other APIs to create custom responses, and used GitHub Actions for automatic deployment to AWS. Additionally, I created and modified integration tests with Mocha and Chai to ensure the code functioned correctly."
+      ],
+      website: "https://www.waterloorocketry.com/",
+      linkedin: "https://www.linkedin.com/company/waterloo-rocketry/"
+    },
+  ];
+
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const handleShowDetails = (index) => {
+    if (activeIndex === index) {
+      setActiveIndex(null);
+    } else {
+      setActiveIndex(index);
+    }
+  };
+
   return (
     <section id="experiences">
       <h5>Get to Know</h5>
       <h2>My Work Experience</h2>
 
-      <Swiper
-        className="container experiences_container"
-        modules={[Navigation, Pagination]}
-        spaceBetween={40}
-        slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
-      >
-        <SwiperSlide className="experience">
-          <h3 className="company_name">
-            Software Engineering Intern - Super.com
-          </h3>
-          <h5 className="date">Jan 2024 - Apr 2024</h5>
-          <small className="company_review">
-            <p>
-              • Developed an onboarding feature using React & Typescript impacting 330k DAU by introducing a Cash for Tasks completion system,
-                resulting in a surge in user engagement and a 30% boost in conversion rate, calculated via Amplitude
-            </p>
-            <p>
-              • Created a API webhook using Flask and integrated a new banned users database table (PostgreSQL), to automatically exclude an
-                average of 150+ banned users weekly from viewing offers, validated through rigorous Postman testing
-            </p>
-            <p>
-              • Implemented a secure validation postback hash mechanism for a key partner, safeguarding the integrity of incoming data with over
-                95% accuracy, and spearheaded the development of corresponding unit and integration tests to automate verification processes
-            </p>
-          </small>
-        </SwiperSlide>
-        <SwiperSlide className="experience">
-          <h3 className="company_name">
-            Machine Learning Engineering Intern - Healthcare Systems R & A
-          </h3>
-          <h5 className="date">May 2023 - Aug 2023</h5>
-          <small className="company_review">
-            <p>
-              • Built a Matplotlib Heatmap feature, enhancing data visualization for 15+ geologists,
-                leading to precise mineral pattern predictions
-            </p>
-            <p>
-              • Streamlined data handling with a predictive imputation algorithm, boosting accuracy by 35%,
-                reducing preprocessing time by 55%
-            </p>
-            <p>
-              • Implemented a Gradient Descent algorithm that can calculate the
-              gradient in parameter optimization, which outperforms current
-              parameter search algorithms in terms of computing speeds, while
-              increasing test accuracy by 37%
-            </p>
-            <p>
-              • Improved GNN training through TensorFlow, achieving a reduction in train time
-              from 2 hours to 10 minutes across 4000 epochs
-            </p>
-          </small>
-        </SwiperSlide>
-        <SwiperSlide className="experience">
-          <h3 className="company_name">
-            Software Engineering Intern - KI3 Photonics Technologies
-          </h3>
-          <h5 className="date">Sept 2022 - Dec 2022</h5>
-          <small className="company_review">
-            <p>
-              • Developed a web app using Flask and JavaScript that can accept
-              1000+ OpenQASM 2.0 strings and generate the resulting quantum
-              circuit with the ability to modify the circuit while hosted,
-              enhancing user accessibility by 45%.
-            </p>
-            <p>
-              • Redesigned the company’s visualization package to include
-              Matplotlib to enable circuit visualizations, circuit comparisons,
-              and circuit-directed acyclic graphs, helping 6+ senior developers
-              reduce debugging times by 65%.
-            </p>
-            <p>
-              • Implemented a Gradient Descent algorithm that can calculate the
-              gradient in parameter optimization, which outperforms current
-              parameter search algorithms in terms of computing speeds, while
-              increasing test accuracy by 37%
-            </p>
-            <p>
-              • Performed test-driven development using A/B testing to validate
-              quantum circuits, ensuring 89.2% code coverage.
-            </p>
-          </small>
-        </SwiperSlide>
-        <SwiperSlide className="experience">
-          <h3 className="company_name">
-            Software Engineering Intern - Accipiter Radar Technologies
-          </h3>
-          <h5 className="date">Jan 2022 - Apr 2022</h5>
-          <small className="company_review">
-            <p>
-              • Created a backend HTTP server in Golang to POST 10K+requests
-              daily, fetched data from Dgraph using DQL and connected Angular's
-              HTTP client to display data
-            </p>
-            <p>
-              • Performed test-driven development by writing unit tests for
-              existing APIs using Python Unittest with Selenium, increasing code
-              coverage by 27%
-            </p>
-            <p>
-              • Utilized Jenkins to provide a continuous integration service in
-              order to automate the entire process of loading the latest build
-              code and test files, running the tests, and generating a report of
-              the results once per day.
-            </p>
-            <p>
-              • Worked in an Agile environment to decrease app failures by 65%
-              by fixing over 40 bugs, improving API request times by up to 90%
-            </p>
-          </small>
-        </SwiperSlide>
-        <SwiperSlide className="experience">
-          <h3 className="company_name">
-            Software Developer - Waterloo Rocketry Team
-          </h3>
-          <h5 className="date">Feb 2022 - Present</h5>
-          <small className="company_review">
-            <p>
-              • Worked on a Slackbot to handle team meetings, commands, and
-              remainders using Node.js, Express, and AWS • Designed our Slackbot
-            </p>
-            <p>
-              • Designed our Slackbot to use AWS Lambda Functions to listen to
-              HTTP requests made by Slack and other APIs to create custom
-              responses, and utilized GitHub Actions for automatic deployment to
-              AWS
-            </p>
-            <p>
-              • Created new and modified existing integration tests with Mocha
-              and Chai to ensure correctly functioning code
-            </p>
-          </small>
-        </SwiperSlide>
-        <SwiperSlide className="experience">
-          <h3 className="company_name">
-            Vice-President Of Computer Science Club - CastleBrooke Secondary
-            School
-          </h3>
-          <h5 className="date">Sept 2020 - Apr 2021</h5>
-          <small className="company_review">
-            <p>
-              • Supervised and taught over 100 club members the fundamentals
-              basics of Python Posted weekly lessons and tutorials, as well as
-              urged participants to attempt CCC problems from the University of
-              Waterloo
-            </p>
-            <p>
-              • Provided feedback to students' code to make it more efficient
-              and user-friendly
-            </p>
-            <p>
-              • Designed various challenges and hackathons to put their
-              knowledge and abilities to the test
-            </p>
-          </small>
-        </SwiperSlide>
-      </Swiper>
+      <div className="timeline">
+        {experiences.map((experience, index) => (
+          <div key={index} className="timeline-item">
+            <h3 className="company_name">{`${experience.title} - ${experience.company}`}</h3>
+            <h5 className="date">{experience.date}</h5>
+            {activeIndex === index && (
+              <small className="company_review">
+                {experience.details.map((detail, i) => (
+                  <p key={i}>{detail}</p>
+                ))}
+              </small>
+            )}
+            <div className="experience-actions">
+              <button className="btn show-details" onClick={() => handleShowDetails(index)}>
+                {activeIndex === index ? 'Hide Details' : 'Show Details'}
+              </button>
+              <a href={experience.website} className="link-btn" target="_blank" rel="noopener noreferrer">
+                <FaLink />
+              </a>
+              <a href={experience.linkedin} className="linkedin-btn" target="_blank" rel="noopener noreferrer">
+                <FaLinkedin />
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
-}
+};
 
-export default Experience
+export default Experience;

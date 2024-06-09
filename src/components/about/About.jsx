@@ -1,12 +1,33 @@
-import React from 'react'
-import './about.css'
-import ME from '../../assests/me-about.jpg'
-import {FaAward} from 'react-icons/fa'
+import React, { useEffect, useRef } from 'react';
+import './about.css';
+import ME from '../../assests/me-about.jpg';
+import { FaAward } from 'react-icons/fa';
 import { GiBookmarklet } from "react-icons/gi";
 import { VscFolderLibrary } from "react-icons/vsc";
+
 const About = () => {
+  const aboutRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const aboutSection = aboutRef.current;
+      const rect = aboutSection.getBoundingClientRect();
+      if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+        aboutSection.classList.add('pop');
+      } else {
+        aboutSection.classList.remove('pop');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <section id="about">
+    <section id="about" ref={aboutRef}>
+      <div className="divider"></div>
       <h5>Get to Know</h5>
       <h2>About Me</h2>
 
@@ -38,12 +59,9 @@ const About = () => {
             </article>
           </div>
           <p>
-            Hello! I am a third-year Mechatronics Engineering student at the
-            University of Waterloo, where I intend to specialize into Software
-            Engineering or Artificial Intelligence. I am firm beliver and working
-            smart and not hard. I am always looking for new opportunities,
-            so feel free to reach out!
-
+            Hello! I am a third-year Mechatronics Engineering student at the University of Waterloo,
+            where I intend to specialize into Software Engineering or Artificial Intelligence. I am a firm believer
+            in working smart and not hard. I am always looking for new opportunities, so feel free to reach out!
           </p>
 
           <a href="#footer" className="btn btn-primary">
@@ -55,4 +73,4 @@ const About = () => {
   );
 }
 
-export default About
+export default About;

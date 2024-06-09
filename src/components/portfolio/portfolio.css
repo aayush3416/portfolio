@@ -1,72 +1,82 @@
-.portfolio__container{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap:2.5rem;
+/* Portfolio Section */
+#portfolio {
+    background-color: var(--color-bg); /* Match background color */
+    padding: 2rem 0; /* Add padding to match the spacing */
+    margin: 0; /* Ensure no extra margin */
 }
 
+/* Portfolio Container */
+.portfolio__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    padding: 0; /* Adjust the padding to maintain spacing within the container */
+    margin: 0; /* Ensure no extra margin */
+}
+
+/* Portfolio Items */
 .portfolio__item {
     background: var(--color-bg-variant);
-    padding:1.2rem;
-    border-radius: 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
     border: 1px solid transparent;
     transition: var(--transition);
     align-items: center;
+    box-shadow: 0 0 25px #8e8eff, 0 0 50px #c49cff8a;
+    max-width: 300px; /* Ensure the item is not too large */
+    margin: auto; /* Center the item */
 }
 
 .portfolio__item:hover {
     border-color: var(--color-primary-variant);
-    /* background:transparent; */
-    /* animation: pulsate 5s ease-in-out ; */
-     box-shadow:
-        0 0 25px #8e8eff, 
-        0 0 50px #c49cff8a
-   
+    box-shadow: 0 0 25px #8e8eff, 0 0 50px #c49cff8a;
 }
-/* @keyframes pulsate{
-    0%{
-        box-shadow:
-        0 0 25px #5ddcff, 
-        0 0 50px #4e00c2;
-    }
-} */
 
-.portfolio__item-projects-image{
-    width: 300px;
-    height: 310px;
-    border-radius: 1.5rem;
+/* Portfolio Item Images */
+.portfolio__item-projects-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 1rem;
     margin: auto;
 }
+
 .portfolio__item__image {
-    border-radius: 1.5rem;
+    border-radius: 1rem;
     overflow: hidden;
+    margin-bottom: 1rem;
 }
 
 .portfolio__item h3 {
-    margin:1.7rem 0 2rem;
+    margin: 1rem 0 1.5rem;
     text-align: center;
 }
 
 .portfolio__item-cta {
     display: flex;
-    gap:1rem;
-    margin-bottom:1rem;
+    gap: 0.5rem;
     justify-content: center;
     align-items: center;
-}   
+    margin-bottom: 1rem;
+}
 
-
-/* ============================== MEDIA QUERIES (MEDIUM DEVICES) =======================*/
-@media screen and (max-width:1024px) {
-    .portfolio__container{
+/* Media Queries (Medium Devices) */
+@media screen and (max-width: 1024px) {
+    .portfolio__container {
         grid-template-columns: 1fr 1fr;
-        gap: 1.2rem;
+        gap: 1rem;
     }
 }
 
-/* ============================== MEDIA QUERIES (SMALL DEVICES) =======================*/
-@media screen and (max-width:600px) {
-    .portfolio__container{
+/* Media Queries (Small Devices) */
+@media screen and (max-width: 600px) {
+    .portfolio__container {
         grid-template-columns: 1fr;
-        gap: 1.1rem;
+        gap: 0.5rem;
     }
+}
+
+/* Ensure No Margins on Body and HTML */
+body, html {
+    margin: 0;
+    padding: 0;
 }

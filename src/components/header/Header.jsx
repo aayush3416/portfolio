@@ -1,30 +1,38 @@
-import React from 'react'
-import './header.css'
-import ME from '../../assests/me.png'
-import HeaderSocials from './HeaderSocials'
+import ME from '../../assests/me.png';
+import React, { useState, useEffect } from 'react';
+import './header.css';
+import HeaderSocials from './HeaderSocials';
+import { FaLightbulb } from 'react-icons/fa';
 
 const Header = () => {
+  const [darkMode, setDarkMode] = useState(true);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    document.body.classList.toggle('dark-mode', !darkMode);
+    document.body.classList.toggle('light-mode', darkMode);
+  };
+
+  useEffect(() => {
+    document.body.classList.add('dark-mode');
+  }, []);
+
   return (
-    <header>
+    <header className={darkMode ? 'dark' : 'light'}>
       <div className="container header__container">
-        <h5>Hello I'm</h5>
-        <h1>Aayush Soni</h1>
-        <div className="i-title">
-          <div className="i-title-wrapper">
-            <h5 className="i-item">Previosuly @ Super.com</h5>
-            <h5 className="i-item"> A Software Engineer</h5>
+        <div className="header__left">
+          <div className="me">
+            <img src={ME} alt="me" className="emoji" />
           </div>
         </div>
-        <HeaderSocials />
-        <div className="me">
-          <img src={ME} alt="me" className="emoji" />
+        <div className="header__right">
+          <h5>Hello, I'm</h5>
+          <h1 className="header__name">Aayush Soni</h1>
+          <HeaderSocials />
         </div>
-        <a href="#footer" className="scroll__down">
-          Let's Talk
-        </a>
       </div>
     </header>
   );
-}
+};
 
-export default Header
+export default Header;
