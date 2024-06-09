@@ -27,7 +27,6 @@ const About = () => {
 
   return (
     <section id="about" ref={aboutRef}>
-      <div className="divider"></div>
       <h5>Get to Know</h5>
       <h2>About Me</h2>
 
