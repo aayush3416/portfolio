@@ -2,7 +2,6 @@
 #portfolio {
     background-color: var(--color-bg); /* Match background color */
     padding: 2rem 0; /* Add padding to match the spacing */
-    margin: 0; /* Ensure no extra margin */
 }
 
 /* Portfolio Container */
@@ -10,8 +9,6 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
-    padding: 0; /* Adjust the padding to maintain spacing within the container */
-    margin: 0; /* Ensure no extra margin */
 }
 
 /* Portfolio Items */
@@ -75,8 +72,3 @@
     }
 }
 
-/* Ensure No Margins on Body and HTML */
-body, html {
-    margin: 0;
-    padding: 0;
-}

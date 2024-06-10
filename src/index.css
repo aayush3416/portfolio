@@ -51,11 +51,11 @@ h1 {
 }
 
 
-section {
+/* section {
     margin-top: 8rem;
     margin: 0;
     padding: 2rem 0;
-  }
+  } */
 
 section > h2, section > h3, section > h4, section > h5, section > h6 {
   text-align: center;
