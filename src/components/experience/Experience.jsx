@@ -5,6 +5,16 @@ import { FaLink, FaLinkedin } from 'react-icons/fa';
 const Experience = () => {
   const experiences = [
     {
+      title: "Backend Engineering Intern",
+      company: "Pietra",
+      date: "Sep 2024 - Dec 2024",
+      details: [
+        "Engineered a high-performance retail data ecosystem using Python, implementing distributed web scraping with asyncio and aiohttp to process 100K+ stores and extract 1M+ product data points daily. Enhanced the system with automated weekly reporting across 13 retail verticals and developed end-to-end warehouse automation through RESTful and GraphQL API integrations, resulting in 92% reduction in data collection time and achieving 99.9% accuracy in market penetration analytics."
+      ],
+      website: "https://www.pietrastudio.com/",
+      linkedin: "https://www.linkedin.com/company/pietra-marketplace/"
+    },
+    {
       title: "Software Engineering Intern",
       company: "Super.com",
       date: "Jan 2024 - Apr 2024",
