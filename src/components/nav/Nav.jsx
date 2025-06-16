@@ -145,9 +145,63 @@ const Nav = () => {
       </section>
       
       <section id="contact" className="fade-in">
-        <div className="container" style={{padding: '4rem 0', textAlign: 'center'}}>
+        <div className="container contact__container">
+          <h5>Get In Touch</h5>
           <h2>Contact Me</h2>
-          <p>Feel free to reach out via email or LinkedIn!</p>
+          <p className="contact__intro">
+            Ready to collaborate on something amazing? Let's connect and bring your ideas to life!
+          </p>
+          
+          <div className="contact__options">
+            <article className="contact__option">
+              <div className="contact__option-icon">
+                📧
+              </div>
+              <h4>Email</h4>
+              <h5>aayushsoni3416@gmail.com</h5>
+              <a href="mailto:aayushsoni3416@gmail.com" className="btn btn-primary">
+                Send a message
+              </a>
+            </article>
+            
+            <article className="contact__option">
+              <div className="contact__option-icon">
+                💼
+              </div>
+              <h4>LinkedIn</h4>
+              <h5>Let's connect professionally</h5>
+              <a href="https://www.linkedin.com/in/aayush-soni-8282bb200/" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                Connect with me
+              </a>
+            </article>
+            
+            <article className="contact__option">
+              <div className="contact__option-icon">
+                🚀
+              </div>
+              <h4>GitHub</h4>
+              <h5>Check out my code</h5>
+              <a href="https://github.com/aayush3416" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                View projects
+              </a>
+            </article>
+          </div>
+          
+          <div className="contact__form">
+            <form>
+              <input type="text" name="name" placeholder="Your Full Name" required />
+              <input type="email" name="email" placeholder="Your Email" required />
+              <textarea name="message" rows="7" placeholder="Your Message" required></textarea>
+              <button type="submit" className="btn btn-primary">Send Message</button>
+            </form>
+          </div>
+          
+          <div className="contact__floating">
+            <div className="floating-shape shape-1">✨</div>
+            <div className="floating-shape shape-2">💫</div>
+            <div className="floating-shape shape-3">🌟</div>
+            <div className="floating-shape shape-4">⚡</div>
+          </div>
         </div>
       </section>
     </>
