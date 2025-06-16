@@ -634,3 +634,20 @@ body.light-mode .timeline-item ul li {
 body.light-mode .timeline-item [style*="fontWeight: 600"] {
   color: var(--color-text-light) !important;
 }
+
+body.light-mode section#experience {
+  background: var(--color-bg-light);
+}
+
+body.light-mode #experiences {
+  background: var(--color-bg-light);
+}
+
+body.light-mode .timeline::after {
+  background-color: var(--color-primary-light);
+}
+
+body.light-mode .timeline-item::after {
+  background-color: var(--color-bg-light);
+  border-color: var(--color-primary-light);
+}
