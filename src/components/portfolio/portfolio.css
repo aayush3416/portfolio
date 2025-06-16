@@ -192,6 +192,14 @@ body.light-mode .portfolio__item:hover {
     box-shadow: 0 30px 60px rgba(91, 76, 219, 0.2);
 }
 
+body.light-mode section#portfolio {
+    background: var(--color-bg-light);
+}
+
+body.light-mode .portfolio__container {
+    background: transparent;
+}
+
 /* Media Queries (Medium Devices) */
 @media screen and (max-width: 1024px) {
     .portfolio__container {
