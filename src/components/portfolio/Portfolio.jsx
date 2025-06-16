@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import './portfolio.css'
 import IMG0 from "../../assests/project0.png";
 import IMG1 from '../../assests/project1.png'
@@ -9,12 +9,42 @@ import IMG5 from '../../assests/project5.jpeg'
 import IMG6 from '../../assests/project6.png'
 
 const Portfolio = () => {
+  const portfolioRef = useRef(null);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const portfolioItems = entry.target.querySelectorAll('.portfolio__item');
+          portfolioItems.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.add('animate');
+            }, index * 150);
+          });
+        }
+      });
+    }, observerOptions);
+
+    if (portfolioRef.current) {
+      observer.observe(portfolioRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <section id="portfolio">
       <h5>My Recent Work</h5>
       <h2>Projects</h2>
 
-      <div className="container portfolio__container">
+      <div className="container portfolio__container" ref={portfolioRef}>
         <article className="portfolio__item">
           <div className="portfolio__item__image">
             <img src={IMG0} alt="StoreFront Ecommerce" className="portfolio__item-projects-image" />

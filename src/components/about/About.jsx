@@ -13,7 +13,7 @@ const About = () => {
 
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.2,
+      threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     };
 
@@ -21,19 +21,33 @@ const About = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate');
+          
+          // Add staggered animation for cards
+          if (entry.target.classList.contains('about__cards')) {
+            const cards = entry.target.querySelectorAll('.about__card');
+            cards.forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('animate');
+              }, index * 200);
+            });
+          }
         }
       });
     }, observerOptions);
 
-    // Observe elements
-    if (imageRef.current) observer.observe(imageRef.current);
-    if (contentRef.current) observer.observe(contentRef.current);
+    // Observe elements with enhanced timing
+    if (imageRef.current) {
+      setTimeout(() => observer.observe(imageRef.current), 100);
+    }
+    if (contentRef.current) {
+      setTimeout(() => observer.observe(contentRef.current), 300);
+    }
     
-    cardsRef.current.forEach((card, index) => {
-      if (card) {
-        setTimeout(() => observer.observe(card), index * 100);
-      }
-    });
+    // Observe cards container for staggered animation
+    const cardsContainer = document.querySelector('.about__cards');
+    if (cardsContainer) {
+      setTimeout(() => observer.observe(cardsContainer), 500);
+    }
 
     return () => {
       observer.disconnect();

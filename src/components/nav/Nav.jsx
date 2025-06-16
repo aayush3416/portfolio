@@ -119,6 +119,13 @@ const Nav = () => {
         >
           🚀
         </a>
+        <a 
+          href="#contact" 
+          data-tooltip="Contact"
+          className={activeNav === '#contact' ? 'active' : ''}
+        >
+          📧
+        </a>
       </nav>
       
       <section id="home" className="fade-in">

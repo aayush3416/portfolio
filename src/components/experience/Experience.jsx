@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './experience.css';
 import { 
   FaReact, 
@@ -27,6 +27,12 @@ const Experience = () => {
   const frontendRef = useRef(null);
   const backendRef = useRef(null);
   const skillsRef = useRef([]);
+
+  // Add state for expanded internships
+  const [expanded, setExpanded] = useState({});
+  const toggleExpand = idx => {
+    setExpanded(prev => ({ ...prev, [idx]: !prev[idx] }));
+  };
 
   useEffect(() => {
     const observerOptions = {
@@ -160,71 +166,39 @@ const Experience = () => {
           Internships & Work Experience
         </h3>
         <div className="timeline">
-          {internships.map((item, idx) => (
-            <div className="timeline-item" key={idx}>
-              <div className="company_name">{item.company}</div>
-              <div className="date">{item.location} | {item.date}</div>
-              <div style={{ fontWeight: 600 }}>{item.title}</div>
-              <ul style={{ marginTop: '0.5rem', color: 'var(--color-light)', textAlign: 'left', paddingLeft: '1.2em' }}>
-                {item.bullets.map((bullet, i) => (
-                  <li key={i} style={{ marginBottom: '0.5em' }}>{bullet}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Additional Technologies Section */}
-      <div className="container" style={{ marginTop: '4rem' }}>
-        <h3 style={{ textAlign: 'center', marginBottom: '2rem', color: 'var(--color-primary)' }}>
-          Additional Technologies
-        </h3>
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          gap: '2rem', 
-          flexWrap: 'wrap',
-          opacity: 0,
-          animation: 'fadeInUp 1s ease-out 0.8s forwards'
-        }}>
-          {[
-            { icon: <FaGitAlt />, name: 'Git' },
-            { icon: <FaDocker />, name: 'Docker' },
-            { icon: <SiTensorflow />, name: 'TensorFlow' },
-            { icon: <SiKubernetes />, name: 'Kubernetes' },
-            { icon: <SiRedis />, name: 'Redis' },
-            { icon: <SiFigma />, name: 'Figma' }
-          ].map((tech, index) => (
-            <div key={index} style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '1rem',
-              borderRadius: 'var(--border-radius)',
-              background: 'var(--color-bg-card)',
-              border: '1px solid var(--color-border)',
-              transition: 'var(--transition)',
-              cursor: 'pointer',
-              backdropFilter: 'blur(10px)'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-5px)';
-              e.target.style.borderColor = 'var(--color-primary)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0)';
-              e.target.style.borderColor = 'var(--color-border)';
-            }}>
-              <div style={{ fontSize: '2rem', color: 'var(--color-primary)' }}>
-                {tech.icon}
+          {internships.map((item, idx) => {
+            const isExpanded = expanded[idx];
+            const previewBullets = item.bullets.slice(0, 2);
+            const hiddenBullets = item.bullets.slice(2);
+            return (
+              <div className="timeline-item" key={idx}>
+                <div className="company_name">{item.company}</div>
+                <div className="date">{item.location} | {item.date}</div>
+                <div style={{ fontWeight: 600 }}>{item.title}</div>
+                <ul style={{ marginTop: '0.5rem', color: 'var(--color-light)', textAlign: 'left', paddingLeft: '1.2em' }}>
+                  {previewBullets.map((bullet, i) => (
+                    <li key={i} style={{ marginBottom: '0.5em' }}>{bullet}</li>
+                  ))}
+                  {isExpanded && hiddenBullets.map((bullet, i) => (
+                    <li key={i + 2} style={{ marginBottom: '0.5em' }}>{bullet}</li>
+                  ))}
+                </ul>
+                {hiddenBullets.length > 0 && (
+                  <button onClick={() => toggleExpand(idx)} style={{
+                    background: 'none',
+                    border: 'none',
+                    color: 'var(--color-primary)',
+                    cursor: 'pointer',
+                    padding: 0,
+                    fontWeight: 600,
+                    marginTop: '0.5em'
+                  }}>
+                    {isExpanded ? 'See less' : 'See more'}
+                  </button>
+                )}
               </div>
-              <small style={{ color: 'var(--color-light)', fontWeight: '500' }}>
-                {tech.name}
-              </small>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
