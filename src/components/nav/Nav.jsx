@@ -187,15 +187,6 @@ const Nav = () => {
             </article>
           </div>
           
-          <div className="contact__form">
-            <form>
-              <input type="text" name="name" placeholder="Your Full Name" required />
-              <input type="email" name="email" placeholder="Your Email" required />
-              <textarea name="message" rows="7" placeholder="Your Message" required></textarea>
-              <button type="submit" className="btn btn-primary">Send Message</button>
-            </form>
-          </div>
-          
           <div className="contact__floating">
             <div className="floating-shape shape-1">✨</div>
             <div className="floating-shape shape-2">💫</div>

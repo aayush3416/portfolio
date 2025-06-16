@@ -1,0 +1,355 @@
+/* ======== PRANK 404 ERROR SCREEN ======== */
+.prank-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  font-family: 'Courier New', monospace;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.error-404 {
+  text-align: center;
+  color: #ff4757;
+  position: relative;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.error-content {
+  position: relative;
+  z-index: 2;
+}
+
+.error-code {
+  font-size: 8rem;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 
+    0 0 10px #ff4757,
+    0 0 20px #ff4757,
+    0 0 30px #ff4757;
+  animation: glitchNumber 2s infinite;
+}
+
+.error-title {
+  font-size: 2.5rem;
+  color: #ff6b9d;
+  margin: 1rem 0;
+  font-weight: 600;
+  animation: textFlicker 1.5s infinite alternate;
+}
+
+.error-message {
+  font-size: 1.2rem;
+  color: #ddd;
+  line-height: 1.6;
+  margin: 2rem 0;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.error-details {
+  background: rgba(255, 71, 87, 0.1);
+  border: 1px solid #ff4757;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.error-details p {
+  margin: 0.5rem 0;
+  color: #ff9999;
+  font-family: 'Courier New', monospace;
+}
+
+.error-details strong {
+  color: #ff4757;
+}
+
+/* Joke Reveal Animation */
+.joke-reveal {
+  margin-top: 3rem;
+  animation: slideInFromBottom 0.8s ease-out;
+}
+
+.joke-text {
+  font-size: 3rem;
+  color: #4CAF50;
+  margin: 1rem 0;
+  font-weight: bold;
+  text-shadow: 0 0 20px #4CAF50;
+  animation: bounce 0.8s ease-out;
+}
+
+.joke-subtitle {
+  font-size: 1.3rem;
+  color: #81C784;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(76, 175, 80, 0.3);
+  border-left: 4px solid #4CAF50;
+  border-radius: 50%;
+  margin: 2rem auto;
+  animation: spin 1s linear infinite;
+}
+
+/* Error Animation Background */
+.error-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glitch-text {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  font-size: 4rem;
+  color: rgba(255, 71, 87, 0.3);
+  font-weight: bold;
+  transform: rotate(-15deg);
+  animation: glitchMove 3s infinite;
+}
+
+.floating-errors {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-errors span {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.6;
+  animation: float 4s ease-in-out infinite;
+}
+
+.floating-errors span:nth-child(1) {
+  top: 10%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.floating-errors span:nth-child(2) {
+  top: 70%;
+  left: 80%;
+  animation-delay: 1s;
+}
+
+.floating-errors span:nth-child(3) {
+  top: 30%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.floating-errors span:nth-child(4) {
+  bottom: 20%;
+  left: 10%;
+  animation-delay: 3s;
+}
+
+/* Website Entrance Animation */
+.App {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.App.website-enter {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes glitchNumber {
+  0%, 100% { 
+    transform: translate(0); 
+    filter: hue-rotate(0deg);
+  }
+  10% { 
+    transform: translate(-2px, -2px); 
+    filter: hue-rotate(90deg);
+  }
+  20% { 
+    transform: translate(2px, 2px); 
+    filter: hue-rotate(180deg);
+  }
+  30% { 
+    transform: translate(-1px, 1px); 
+    filter: hue-rotate(270deg);
+  }
+  40% { 
+    transform: translate(1px, -1px); 
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes textFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes glitchMove {
+  0%, 100% {
+    transform: rotate(-15deg) translateX(0);
+    opacity: 0.3;
+  }
+  25% {
+    transform: rotate(-10deg) translateX(-10px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: rotate(-20deg) translateX(10px);
+    opacity: 0.7;
+  }
+  75% {
+    transform: rotate(-12deg) translateX(-5px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(-20px) rotate(90deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-30px) rotate(270deg);
+    opacity: 0.9;
+  }
+}
+
+/* Screen glitch effect */
+.prank-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 71, 87, 0.03) 2px,
+    rgba(255, 71, 87, 0.03) 4px
+  );
+  pointer-events: none;
+  animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .error-code {
+    font-size: 5rem;
+  }
+  
+  .error-title {
+    font-size: 2rem;
+  }
+  
+  .error-message {
+    font-size: 1rem;
+  }
+  
+  .joke-text {
+    font-size: 2rem;
+  }
+  
+  .glitch-text {
+    font-size: 2.5rem;
+    top: 15%;
+    right: 5%;
+  }
+  
+  .floating-errors span {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .error-404 {
+    padding: 1rem;
+  }
+  
+  .error-code {
+    font-size: 4rem;
+  }
+  
+  .error-title {
+    font-size: 1.5rem;
+  }
+  
+  .joke-text {
+    font-size: 1.5rem;
+  }
+  
+  .joke-subtitle {
+    font-size: 1rem;
+  }
+} 
