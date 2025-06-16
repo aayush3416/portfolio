@@ -175,44 +175,6 @@ const Experience = () => {
         </div>
       </div>
 
-      <div className="container experience__container">
-        <div className="experience__frontend" ref={frontendRef}>
-          <h3>Frontend Development</h3>
-          <div className="experience__content">
-            {frontendSkills.map((skill, index) => (
-              <article key={index} className="experience__details">
-                <div className="experience__details-icon">
-                  {skill.icon}
-                </div>
-                <div>
-                  <h4>{skill.name}</h4>
-                  <small>{skill.description}</small>
-                  <SkillLevel level={skill.level} />
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        <div className="experience__backend" ref={backendRef}>
-          <h3>Backend & Tools</h3>
-          <div className="experience__content">
-            {backendSkills.map((skill, index) => (
-              <article key={index} className="experience__details">
-                <div className="experience__details-icon">
-                  {skill.icon}
-                </div>
-                <div>
-                  <h4>{skill.name}</h4>
-                  <small>{skill.description}</small>
-                  <SkillLevel level={skill.level} />
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* Additional Technologies Section */}
       <div className="container" style={{ marginTop: '4rem' }}>
         <h3 style={{ textAlign: 'center', marginBottom: '2rem', color: 'var(--color-primary)' }}>
