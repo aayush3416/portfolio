@@ -497,3 +497,15 @@ body.light-mode .experience__details:hover .skill-dot.filled {
     font-size: 0.75rem;
   }
 }
+
+body.light-mode .timeline-item {
+  background: var(--color-bg-card-light);
+  color: var(--color-text-light);
+  box-shadow: 0 0 25px #bdbdfc, 0 0 50px #e0e0ff8a;
+}
+body.light-mode .company_name {
+  color: var(--color-primary-light);
+}
+body.light-mode .date {
+  color: var(--color-light-mode);
+}

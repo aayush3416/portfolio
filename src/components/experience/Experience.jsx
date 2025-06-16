@@ -91,10 +91,48 @@ const Experience = () => {
     { name: 'GraphQL', icon: <SiGraphql />, level: 3, description: 'Intermediate' }
   ];
 
+  const internships = [
+    {
+      company: 'Tesla',
+      title: 'Software Engineering Intern',
+      date: 'May 2023 - Aug 2023',
+      description: 'Worked on automation and data pipelines for manufacturing analytics.'
+    },
+    {
+      company: 'Google',
+      title: 'STEP Intern',
+      date: 'Jan 2023 - Apr 2023',
+      description: 'Developed internal tools for code review and deployment.'
+    },
+    {
+      company: 'Shopify',
+      title: 'Backend Developer Intern',
+      date: 'May 2022 - Aug 2022',
+      description: 'Built scalable backend services for e-commerce analytics.'
+    }
+  ];
+
   return (
     <section id="experience">
       <h5>What Skills I Have</h5>
       <h2>My Experience</h2>
+
+      {/* Internships Timeline */}
+      <div className="container" style={{ marginBottom: '3rem' }}>
+        <h3 style={{ textAlign: 'center', marginBottom: '2rem', color: 'var(--color-primary)' }}>
+          Internships & Work Experience
+        </h3>
+        <div className="timeline">
+          {internships.map((item, idx) => (
+            <div className="timeline-item" key={idx}>
+              <div className="company_name">{item.company}</div>
+              <div className="date">{item.date}</div>
+              <div style={{ fontWeight: 600 }}>{item.title}</div>
+              <div style={{ marginTop: '0.5rem', color: 'var(--color-light)' }}>{item.description}</div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <div className="container experience__container">
         <div className="experience__frontend" ref={frontendRef}>

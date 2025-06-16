@@ -60,7 +60,7 @@ const Header = () => {
             
             <div className="header__cta">
               <a href="#about" className="btn">Get to Know Me</a>
-              <a href="#footer" className="btn btn-primary">Let's Connect</a>
+              <a href="#contact" className="btn btn-primary">Let's Connect</a>
             </div>
           </div>
           

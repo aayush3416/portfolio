@@ -136,6 +136,13 @@ const Nav = () => {
       <section id="projects" className="fade-in">
         <Portfolio />
       </section>
+      
+      <section id="contact" className="fade-in">
+        <div className="container" style={{padding: '4rem 0', textAlign: 'center'}}>
+          <h2>Contact Me</h2>
+          <p>Feel free to reach out via email or LinkedIn!</p>
+        </div>
+      </section>
     </>
   );
 }

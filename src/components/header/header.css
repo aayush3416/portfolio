@@ -510,3 +510,29 @@
       padding: 0.6rem 1rem;
     }
   }
+
+  body.light-mode header {
+    background: linear-gradient(135deg, var(--color-bg-light), var(--color-bg-variant-light));
+  }
+  body.light-mode .header__name {
+    color: var(--color-primary-light);
+    -webkit-text-fill-color: var(--color-primary-light);
+  }
+  body.light-mode .header__description {
+    color: var(--color-light-mode);
+  }
+  body.light-mode .header__cta .btn {
+    color: var(--color-primary-light);
+    border-color: var(--color-primary-light);
+  }
+  body.light-mode .header__cta .btn-primary {
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));
+    color: var(--color-white);
+    border: none;
+  }
+  body.light-mode .profile-image {
+    border-color: var(--color-primary-light);
+  }
+  body.light-mode .image-glow {
+    background: radial-gradient(circle, var(--color-primary-light) 0%, transparent 70%);
+  }

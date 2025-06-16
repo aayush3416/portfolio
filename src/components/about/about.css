@@ -407,3 +407,24 @@
       font-size: 0.8rem;
     }
   }
+
+  body.light-mode .about__container {
+    background: var(--color-bg-light);
+  }
+  body.light-mode .about__me-image {
+    border-color: var(--color-primary-light);
+  }
+  body.light-mode .about__card {
+    background: var(--color-bg-card-light);
+    border-color: var(--color-border-light);
+    color: var(--color-text-light);
+  }
+  body.light-mode .about__card h5 {
+    color: var(--color-primary-light);
+  }
+  body.light-mode .about__card small {
+    color: var(--color-light-mode);
+  }
+  body.light-mode .about__content p {
+    color: var(--color-light-mode);
+  }
