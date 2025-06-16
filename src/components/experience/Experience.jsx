@@ -1,111 +1,190 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './experience.css';
-import { FaLink, FaLinkedin } from 'react-icons/fa';
+import { 
+  FaReact, 
+  FaNodeJs, 
+  FaPython, 
+  FaJsSquare, 
+  FaGitAlt, 
+  FaDocker,
+  FaHtml5,
+  FaCss3Alt
+} from 'react-icons/fa';
+import { 
+  SiTypescript, 
+  SiExpress, 
+  SiMongodb, 
+  SiPostgresql,
+  SiTensorflow,
+  SiKubernetes,
+  SiRedis,
+  SiFigma,
+  SiNextdotjs,
+  SiGraphql
+} from 'react-icons/si';
 
 const Experience = () => {
-  const experiences = [
-    {
-      title: "Backend Engineering Intern",
-      company: "Pietra",
-      date: "Sep 2024 - Dec 2024",
-      details: [
-        "Engineered a high-performance retail data ecosystem using Python, implementing distributed web scraping with asyncio and aiohttp to process 100K+ stores and extract 1M+ product data points daily. Enhanced the system with automated weekly reporting across 13 retail verticals and developed end-to-end warehouse automation through RESTful and GraphQL API integrations, resulting in 92% reduction in data collection time and achieving 99.9% accuracy in market penetration analytics."
-      ],
-      website: "https://www.pietrastudio.com/",
-      linkedin: "https://www.linkedin.com/company/pietra-marketplace/"
-    },
-    {
-      title: "Software Engineering Intern",
-      company: "Super.com",
-      date: "Jan 2024 - Apr 2024",
-      details: [
-        "At Super.com, I developed a Cash for Tasks onboarding feature using React and Typescript, increasing user engagement and conversion rates by 30%. I optimized the rewards-engine backend with Apache Kafka, improving processing speed and achieving a 99.99% success rate. I also conducted A/B testing to enhance user retention, implemented a secure validation mechanism for partner data, and created a Flask API webhook integrated with a PostgreSQL database to exclude malicious users."
-      ],
-      website: "https://www.super.com/",
-      linkedin: "https://www.linkedin.com/company/superdotcom/"
-    },
-    {
-      title: "Software Engineering Intern",
-      company: "Healthcare Systems R & A",
-      date: "May 2023 - Apr 2023",
-      details: [
-        "During my internship at Healthcare Systems R & A, I built a Matplotlib heatmap feature that improved data visualization for geologists, aiding in precise mineral pattern predictions. I streamlined data handling with a predictive imputation algorithm, boosting the f1 score and reducing preprocessing time. Additionally, I optimized GNN training using TensorFlow tools, significantly reducing training time."
-      ],
-      website: "http://www.healthcare-systems.ca/team.html",
-      linkedin: "https://www.linkedin.com/company/healthcare-systems-r-a/"
-    },
-    {
-      title: "Software Engineering Intern",
-      company: "Ki3 Photonics Technologies",
-      date: "Sept 2022 - Dec 2022",
-      details: [
-        "At Ki3 Photonics Technologies, I architected a web app for real-time quantum circuit customization using JavaScript and Flask. I enhanced the efficiency of quantum circuits through advanced optimization techniques using Python and TensorFlow Quantum. Furthermore, I implemented automated testing and CI workflows with Jest, Mocha, and Jenkins, achieving high code coverage."
-      ],
-      website: "https://www.ki3photonics.com/",
-      linkedin: "https://www.linkedin.com/company/ki3-photonics-technologies-inc/"
-    },
-    {
-      title: "Software Engineering Intern",
-      company: "Accipiter Radar Technologies",
-      date: "Jan 2022 - Apr 2022",
-      details: [
-        "While interning at Accipiter Radar Technologies, I built a Golang server capable of handling high request volumes, optimized query execution with DQL, and integrated the data with Angular for client display. I also developed an application to encrypt paystubs using the PYPDF2 library, saving the Accounting Department significant time bi-weekly. Additionally, I worked in an Agile environment to fix numerous bugs, reducing application failures using Typescript and Angular."
-      ],
-      website: "https://www.accipiterradar.com/",
-      linkedin: "https://www.linkedin.com/company/accipiter-radar/"
-    },
-    {
-      title: "Software Engineering Intern",
-      company: "Waterloo Rocketry Team",
-      date: "Jan 2022 - Present",
-      details: [
-        "I developed a Slackbot to handle team meetings, commands, and reminders using Node.js, Express, and AWS. I designed the Slackbot to utilize AWS Lambda Functions for listening to HTTP requests from Slack and other APIs to create custom responses, and used GitHub Actions for automatic deployment to AWS. Additionally, I created and modified integration tests with Mocha and Chai to ensure the code functioned correctly."
-      ],
-      website: "https://www.waterloorocketry.com/",
-      linkedin: "https://www.linkedin.com/company/waterloo-rocketry/"
-    },
-  ];
+  const frontendRef = useRef(null);
+  const backendRef = useRef(null);
+  const skillsRef = useRef([]);
 
-  const [activeIndex, setActiveIndex] = useState(null);
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
 
-  const handleShowDetails = (index) => {
-    if (activeIndex === index) {
-      setActiveIndex(null);
-    } else {
-      setActiveIndex(index);
-    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          
+          // Animate skill items
+          const skillItems = entry.target.querySelectorAll('.experience__details');
+          skillItems.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.add('animate');
+            }, index * 100);
+          });
+        }
+      });
+    }, observerOptions);
+
+    if (frontendRef.current) observer.observe(frontendRef.current);
+    if (backendRef.current) observer.observe(backendRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const SkillLevel = ({ level }) => {
+    return (
+      <div className="skill-level">
+        <div className="skill-dots">
+          {[...Array(5)].map((_, index) => (
+            <div 
+              key={index} 
+              className={`skill-dot ${index < level ? 'filled' : ''}`}
+            />
+          ))}
+        </div>
+      </div>
+    );
   };
 
-  return (
-    <section id="experiences">
-      <h5>Get to Know</h5>
-      <h2>My Work Experience</h2>
+  const frontendSkills = [
+    { name: 'React', icon: <FaReact />, level: 5, description: 'Advanced' },
+    { name: 'TypeScript', icon: <SiTypescript />, level: 4, description: 'Proficient' },
+    { name: 'Next.js', icon: <SiNextdotjs />, level: 4, description: 'Proficient' },
+    { name: 'JavaScript', icon: <FaJsSquare />, level: 5, description: 'Expert' },
+    { name: 'HTML5', icon: <FaHtml5 />, level: 5, description: 'Expert' },
+    { name: 'CSS3', icon: <FaCss3Alt />, level: 4, description: 'Proficient' }
+  ];
 
-      <div className="timeline">
-        {experiences.map((experience, index) => (
-          <div key={index} className="timeline-item">
-            <h3 className="company_name">{`${experience.title} - ${experience.company}`}</h3>
-            <h5 className="date">{experience.date}</h5>
-            {activeIndex === index && (
-              <small className="company_review">
-                {experience.details.map((detail, i) => (
-                  <p key={i}>{detail}</p>
-                ))}
-              </small>
-            )}
-            <div className="experience-actions">
-              <button className="btn show-details" onClick={() => handleShowDetails(index)}>
-                {activeIndex === index ? 'Hide Details' : 'Show Details'}
-              </button>
-              <a href={experience.website} className="link-btn" target="_blank" rel="noopener noreferrer">
-                <FaLink />
-              </a>
-              <a href={experience.linkedin} className="linkedin-btn" target="_blank" rel="noopener noreferrer">
-                <FaLinkedin />
-              </a>
-            </div>
+  const backendSkills = [
+    { name: 'Python', icon: <FaPython />, level: 5, description: 'Expert' },
+    { name: 'Node.js', icon: <FaNodeJs />, level: 4, description: 'Proficient' },
+    { name: 'Express.js', icon: <SiExpress />, level: 4, description: 'Proficient' },
+    { name: 'PostgreSQL', icon: <SiPostgresql />, level: 4, description: 'Proficient' },
+    { name: 'MongoDB', icon: <SiMongodb />, level: 3, description: 'Intermediate' },
+    { name: 'GraphQL', icon: <SiGraphql />, level: 3, description: 'Intermediate' }
+  ];
+
+  return (
+    <section id="experience">
+      <h5>What Skills I Have</h5>
+      <h2>My Experience</h2>
+
+      <div className="container experience__container">
+        <div className="experience__frontend" ref={frontendRef}>
+          <h3>Frontend Development</h3>
+          <div className="experience__content">
+            {frontendSkills.map((skill, index) => (
+              <article key={index} className="experience__details">
+                <div className="experience__details-icon">
+                  {skill.icon}
+                </div>
+                <div>
+                  <h4>{skill.name}</h4>
+                  <small>{skill.description}</small>
+                  <SkillLevel level={skill.level} />
+                </div>
+              </article>
+            ))}
           </div>
-        ))}
+        </div>
+
+        <div className="experience__backend" ref={backendRef}>
+          <h3>Backend & Tools</h3>
+          <div className="experience__content">
+            {backendSkills.map((skill, index) => (
+              <article key={index} className="experience__details">
+                <div className="experience__details-icon">
+                  {skill.icon}
+                </div>
+                <div>
+                  <h4>{skill.name}</h4>
+                  <small>{skill.description}</small>
+                  <SkillLevel level={skill.level} />
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Additional Technologies Section */}
+      <div className="container" style={{ marginTop: '4rem' }}>
+        <h3 style={{ textAlign: 'center', marginBottom: '2rem', color: 'var(--color-primary)' }}>
+          Additional Technologies
+        </h3>
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          gap: '2rem', 
+          flexWrap: 'wrap',
+          opacity: 0,
+          animation: 'fadeInUp 1s ease-out 0.8s forwards'
+        }}>
+          {[
+            { icon: <FaGitAlt />, name: 'Git' },
+            { icon: <FaDocker />, name: 'Docker' },
+            { icon: <SiTensorflow />, name: 'TensorFlow' },
+            { icon: <SiKubernetes />, name: 'Kubernetes' },
+            { icon: <SiRedis />, name: 'Redis' },
+            { icon: <SiFigma />, name: 'Figma' }
+          ].map((tech, index) => (
+            <div key={index} style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '1rem',
+              borderRadius: 'var(--border-radius)',
+              background: 'var(--color-bg-card)',
+              border: '1px solid var(--color-border)',
+              transition: 'var(--transition)',
+              cursor: 'pointer',
+              backdropFilter: 'blur(10px)'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'translateY(-5px)';
+              e.target.style.borderColor = 'var(--color-primary)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.borderColor = 'var(--color-border)';
+            }}>
+              <div style={{ fontSize: '2rem', color: 'var(--color-primary)' }}>
+                {tech.icon}
+              </div>
+              <small style={{ color: 'var(--color-light)', fontWeight: '500' }}>
+                {tech.name}
+              </small>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -11,14 +11,17 @@ const Nav = () => {
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll("nav a");
 
+    // Intersection Observer for better performance
     const options = {
-      threshold: 0.4, // Adjusted threshold to trigger sooner
+      threshold: 0.3,
+      rootMargin: '-80px 0px -80px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveNav(`#${entry.target.id}`);
+          entry.target.classList.add('visible');
         }
       });
     }, options);
@@ -27,22 +30,59 @@ const Nav = () => {
       observer.observe(section);
     });
 
-    window.addEventListener("scroll", () => {
+    // Scroll progress indicator
+    const updateScrollProgress = () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollTop = window.pageYOffset;
+      const scrollProgress = (scrollTop / scrollHeight) * 100;
+      
+      document.documentElement.style.setProperty('--scroll-progress', `${scrollProgress}%`);
+    };
+
+    window.addEventListener('scroll', updateScrollProgress);
+
+    // Initial check for sections in view
+    const checkInitialVisibility = () => {
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        if (window.pageYOffset >= sectionTop - 80) {
-          setActiveNav(`#${section.getAttribute("id")}`);
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          section.classList.add('visible');
         }
       });
+    };
 
-      if (window.scrollY === 0) {
-        setActiveNav('#home');
+    // Smooth scroll behavior
+    const smoothScrollToSection = (e) => {
+      e.preventDefault();
+      const targetId = e.target.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      
+      if (targetSection) {
+        const headerOffset = 80;
+        const elementPosition = targetSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
       }
+    };
+
+    // Add smooth scroll to nav links
+    navLinks.forEach(link => {
+      link.addEventListener('click', smoothScrollToSection);
     });
+
+    checkInitialVisibility();
 
     return () => {
       sections.forEach((section) => {
         observer.unobserve(section);
+      });
+      window.removeEventListener('scroll', updateScrollProgress);
+      navLinks.forEach(link => {
+        link.removeEventListener('click', smoothScrollToSection);
       });
     };
   }, []);
@@ -50,22 +90,51 @@ const Nav = () => {
   return (
     <>
       <nav>
-        <a href="#home" onClick={() => setActiveNav('#home')} className={activeNav === '#home' ? 'active' : ''}>Home</a>
-        <a href="#about" onClick={() => setActiveNav('#about')} className={activeNav === '#about' ? 'active' : ''}>About</a>
-        <a href="#experiences" onClick={() => setActiveNav('#experiences')} className={activeNav === '#experiences' ? 'active' : ''}>Experiences</a>
-        <a href="#projects" onClick={() => setActiveNav('#projects')} className={activeNav === '#projects' ? 'active' : ''}>Projects</a>
+        <div className="nav-indicator"></div>
+        <a 
+          href="#home" 
+          data-tooltip="Home"
+          className={activeNav === '#home' ? 'active' : ''}
+        >
+          🏠
+        </a>
+        <a 
+          href="#about" 
+          data-tooltip="About"
+          className={activeNav === '#about' ? 'active' : ''}
+        >
+          👨‍💻
+        </a>
+        <a 
+          href="#experiences" 
+          data-tooltip="Experience"
+          className={activeNav === '#experiences' ? 'active' : ''}
+        >
+          💼
+        </a>
+        <a 
+          href="#projects" 
+          data-tooltip="Projects"
+          className={activeNav === '#projects' ? 'active' : ''}
+        >
+          🚀
+        </a>
       </nav>
-      <section id="home">
+      
+      <section id="home" className="fade-in">
+        {/* Header content is already handled in App.jsx */}
+      </section>
+      
+      <section id="about" className="fade-in">
         <About />
       </section>
-      <section id="about">
+      
+      <section id="experiences" className="fade-in">
         <Experience />
       </section>
-      <section id="experiences">
+      
+      <section id="projects" className="fade-in">
         <Portfolio />
-      </section>
-      <section id="projects">
-        {/* Add your content here */}
       </section>
     </>
   );

@@ -1,29 +1,50 @@
 import React, { useEffect, useRef } from 'react';
 import './about.css';
 import ME from '../../assests/me-about.jpg';
-import { FaAward } from 'react-icons/fa';
+import { FaAward, FaGraduationCap, FaCode } from 'react-icons/fa';
 import { GiBookmarklet } from "react-icons/gi";
 import { VscFolderLibrary } from "react-icons/vsc";
 
 const About = () => {
   const aboutRef = useRef(null);
+  const imageRef = useRef(null);
+  const contentRef = useRef(null);
+  const cardsRef = useRef([]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const aboutSection = aboutRef.current;
-      const rect = aboutSection.getBoundingClientRect();
-      if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-        aboutSection.classList.add('pop');
-      } else {
-        aboutSection.classList.remove('pop');
-      }
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements
+    if (imageRef.current) observer.observe(imageRef.current);
+    if (contentRef.current) observer.observe(contentRef.current);
+    
+    cardsRef.current.forEach((card, index) => {
+      if (card) {
+        setTimeout(() => observer.observe(card), index * 100);
+      }
+    });
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
     };
   }, []);
+
+  const addToRefs = (el) => {
+    if (el && !cardsRef.current.includes(el)) {
+      cardsRef.current.push(el);
+    }
+  };
 
   return (
     <section id="about" ref={aboutRef}>
@@ -31,32 +52,33 @@ const About = () => {
       <h2>About Me</h2>
 
       <div className="container about__container">
-        <div className="about__me">
+        <div className="about__me" ref={imageRef}>
           <div className="about__me-image">
             <img src={ME} alt="About-Image" />
           </div>
         </div>
 
-        <div className="about__content">
+        <div className="about__content" ref={contentRef}>
           <div className="about__cards">
-            <article className="about__card">
+            <article className="about__card" ref={addToRefs}>
               <FaAward className="about__icon" />
               <h5>Experience</h5>
-              <small>3+ Years</small>
+              <small>3+ Years Working</small>
             </article>
 
-            <article className="about__card">
+            <article className="about__card" ref={addToRefs}>
               <GiBookmarklet className="about__icon" />
-              <h5>Courses</h5>
-              <small>8+ Programming Courses</small>
+              <h5>Education</h5>
+              <small>Mechatronics Engineering</small>
             </article>
 
-            <article className="about__card">
+            <article className="about__card" ref={addToRefs}>
               <VscFolderLibrary className="about__icon" />
               <h5>Projects</h5>
               <small>20+ Completed</small>
             </article>
           </div>
+          
           <p>
             Hello! I am a third-year Mechatronics Engineering student at the University of Waterloo,
             where I intend to specialize into Software Engineering or Artificial Intelligence. I am a firm believer

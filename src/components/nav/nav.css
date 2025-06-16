@@ -1,36 +1,242 @@
 nav {
-    background: rgba(0, 0, 0, 0.3);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 1rem 0;
-    z-index: 2;
     position: fixed;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    background: var(--color-bg-card);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: 1rem 0.5rem;
+    z-index: 100;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+nav::before {
+    content: '';
+    position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    gap: 2rem;
-    border-radius: 0 0 1rem 1rem;
-    backdrop-filter: blur(15px);
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(253, 121, 168, 0.1));
+    border-radius: var(--border-radius-lg);
+    opacity: 0;
+    transition: var(--transition);
+    z-index: -1;
+}
+
+nav:hover::before {
+    opacity: 1;
 }
 
 nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    margin: 0.5rem 0;
+    border-radius: 50%;
     background: transparent;
-    padding: 0.7rem 1.4rem;
-    border-radius: 0.5rem;
-    display: inline-block;
     color: var(--color-light);
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
     text-decoration: none;
-    text-align: center;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border-radius: 50%;
+    transform: scale(0);
+    transition: var(--transition);
+    z-index: -1;
+}
+
+nav a::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: calc(100% + 1rem);
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--color-bg-card);
+    color: var(--color-white);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow);
+}
+
+nav a:hover::before {
+    transform: scale(1);
+}
+
+nav a:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(-5px);
 }
 
 nav a:hover {
-    background: rgba(0, 0, 0, 0.3);
+    color: var(--color-white);
+    transform: scale(1.1);
 }
 
 nav a.active {
-    background: var(--color-primary);
-    color: var(--color-bg);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-white);
+    border-color: var(--color-primary);
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
+}
+
+nav a.active::before {
+    transform: scale(1);
+}
+
+/* Light mode adjustments */
+body.light-mode nav {
+    background: var(--color-bg-card-light);
+    border-color: var(--color-border-light);
+    box-shadow: var(--shadow-light);
+}
+
+body.light-mode nav a {
+    color: var(--color-light-mode);
+}
+
+body.light-mode nav a::after {
+    background: var(--color-bg-card-light);
+    color: var(--color-text-light);
+    border-color: var(--color-border-light);
+}
+
+body.light-mode nav a.active {
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));
+    border-color: var(--color-primary-light);
+    box-shadow: 0 0 20px rgba(91, 76, 219, 0.3);
+}
+
+/* Add scroll indicator */
+.nav-indicator {
+    position: absolute;
+    left: -8px;
+    top: 1rem;
+    bottom: 1rem;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+    border-radius: 2px;
+    opacity: 0.3;
+    transition: var(--transition);
+}
+
+.nav-indicator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--scroll-progress, 0%);
+    background: var(--color-accent);
+    border-radius: 2px;
+    transition: height 0.3s ease;
+}
+
+/* Floating animation */
+@keyframes navFloat {
+    0%, 100% {
+        transform: translateY(-50%) translateX(0);
+    }
+    50% {
+        transform: translateY(-50%) translateX(-2px);
+    }
+}
+
+nav {
+    animation: navFloat 4s ease-in-out infinite;
+}
+
+/* Responsive design */
+@media screen and (max-width: 1024px) {
+    nav {
+        right: 1.5rem;
+    }
+    
+    nav a::after {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        bottom: 2rem;
+        top: auto;
+        right: 50%;
+        transform: translateX(50%);
+        flex-direction: row;
+        padding: 0.5rem 1rem;
+        border-radius: var(--border-radius);
+        animation: none;
+    }
+    
+    nav a {
+        width: 45px;
+        height: 45px;
+        margin: 0 0.3rem;
+    }
+    
+    nav a::after {
+        display: none;
+    }
+    
+    .nav-indicator {
+        display: none;
+    }
+}
+
+/* Section styling */
+section {
+    scroll-margin-top: 4rem;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add pulse effect for active navigation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(108, 92, 231, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(108, 92, 231, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(108, 92, 231, 0);
+    }
+}
+
+nav a.active {
+    animation: pulse 2s infinite;
 }
 
