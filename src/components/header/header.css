@@ -32,20 +32,20 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--color-bg), var(--color-bg-variant));
+    background: var(--color-bg);
     padding: 2rem 0;
   }
 
   header.dark {
-    background: linear-gradient(135deg, var(--color-bg), var(--color-bg-variant));
+    background: var(--color-bg);
   }
 
   header.light {
-    background: linear-gradient(135deg, var(--color-bg-light), var(--color-bg-variant-light));
+    background: var(--color-bg-light);
   }
 
-  /* Animated background particles */
-  header::before {
+  /* Remove animated background particles */
+  /* header::before {
     content: '';
     position: absolute;
     top: 0;
@@ -60,12 +60,12 @@
     background-size: 100px 100px;
     animation: particleFloat 20s linear infinite;
     z-index: 0;
-  }
+  } */
 
-  @keyframes particleFloat {
+  /* @keyframes particleFloat {
     0% { transform: translateY(0) translateX(0); }
     100% { transform: translateY(-100px) translateX(50px); }
-  }
+  } */
 
   .header__container {
     position: relative;
@@ -512,7 +512,7 @@
   }
 
   body.light-mode header {
-    background: linear-gradient(135deg, var(--color-bg-light), var(--color-bg-variant-light));
+    background: var(--color-bg-light);
   }
   body.light-mode .header__name {
     color: var(--color-primary-light);
