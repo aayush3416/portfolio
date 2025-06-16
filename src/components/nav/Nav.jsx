@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './nav.css';
+import Header from '../header/Header';
 import About from '../about/About';
 import Experience from '../experience/Experience';
 import Portfolio from '../portfolio/Portfolio';
@@ -129,7 +130,7 @@ const Nav = () => {
       </nav>
       
       <section id="home" className="fade-in">
-        {/* Header content is already handled in App.jsx */}
+        <Header />
       </section>
       
       <section id="about" className="fade-in">
