@@ -243,10 +243,11 @@ nav a.active {
 /* ======== CONTACT SECTION STYLING ======== */
 #contact {
   background: var(--color-bg);
-  padding: 8rem 0;
+  padding: 4rem 0;
   position: relative;
   overflow: hidden;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .contact__container {

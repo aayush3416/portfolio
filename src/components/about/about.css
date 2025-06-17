@@ -48,6 +48,7 @@
     color: var(--color-white);
     padding: 4rem 0; /* Adjust margin */
     margin-top: 0; /* Remove margin to eliminate partition */
+    margin-bottom: 0;
   }
 
   .about__container {

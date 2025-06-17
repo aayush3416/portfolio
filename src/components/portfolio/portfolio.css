@@ -1,9 +1,10 @@
 /* Portfolio Section */
 #portfolio {
-    padding: 8rem 0;
+    padding: 4rem 0;
     background: var(--color-bg);
     position: relative;
     margin-top: 0;
+    margin-bottom: 0;
 }
 
 body.light-mode #portfolio {
