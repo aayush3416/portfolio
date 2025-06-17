@@ -137,6 +137,12 @@ section {
   position: relative;
 }
 
+/* Remove margin for home section to eliminate partition */
+section#home {
+  margin-top: 0;
+  padding: 0;
+}
+
 section > h2, section > h3, section > h4, section > h5, section > h6 {
   text-align: center;
   margin-bottom: 3rem;
