@@ -6,6 +6,10 @@
     margin-top: 0;
 }
 
+body.light-mode #portfolio {
+    background: var(--color-bg-light);
+}
+
 /* Portfolio Container */
 .portfolio__container {
     display: grid;

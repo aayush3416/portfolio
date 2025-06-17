@@ -156,7 +156,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" style={{ background: 'var(--color-bg)', marginTop: 0 }}>
+    <section id="experience" style={{ marginTop: 0 }}>
       <h5>What Skills I Have</h5>
       <h2>My Experience</h2>
 

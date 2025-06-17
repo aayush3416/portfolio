@@ -149,16 +149,6 @@ section > h2, section > h3, section > h4, section > h5, section > h6 {
   position: relative;
 }
 
-section > h2::after {
-  content: '';
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-  display: block;
-  margin: 1rem auto;
-  border-radius: 2px;
-}
-
 .text-light {
   color: var(--color-light);
 }
@@ -307,10 +297,6 @@ body.light-mode .card {
     width: var(--container-width-md);
   }
   
-  section {
-    margin-top: 6rem;
-  }
-  
   h1 {
     font-size: 3rem;
   }
@@ -319,10 +305,6 @@ body.light-mode .card {
 @media screen and (max-width: 600px) {
   .container {
     width: var(--container-width-sm);
-  }
-  
-  section {
-    margin-top: 4rem;
   }
   
   section > h2 {
