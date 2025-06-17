@@ -47,7 +47,7 @@
     background: var(--color-bg); /* Matching the home page background */
     color: var(--color-white);
     padding: 4rem 0; /* Adjust margin */
-
+    margin-top: 0; /* Remove margin to eliminate partition */
   }
 
   .about__container {
@@ -499,6 +499,7 @@
   }
   body.light-mode section#about {
     background: var(--color-bg-light);
+    margin-top: 0;
   }
   body.light-mode .about__me-image {
     border-color: var(--color-primary-light);

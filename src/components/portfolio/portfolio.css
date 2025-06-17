@@ -1,8 +1,9 @@
 /* Portfolio Section */
 #portfolio {
     padding: 8rem 0;
-    background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-variant) 100%);
+    background: var(--color-bg);
     position: relative;
+    margin-top: 0;
 }
 
 /* Portfolio Container */

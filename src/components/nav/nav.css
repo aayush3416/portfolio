@@ -242,10 +242,11 @@ nav a.active {
 
 /* ======== CONTACT SECTION STYLING ======== */
 #contact {
-  background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-variant) 100%);
+  background: var(--color-bg);
   padding: 8rem 0;
   position: relative;
   overflow: hidden;
+  margin-top: 0;
 }
 
 .contact__container {
@@ -483,7 +484,7 @@ nav a.active {
 
 /* Light Mode Styles */
 body.light-mode #contact {
-  background: linear-gradient(135deg, #f8f9ff 0%, #e8edff 100%);
+  background: var(--color-bg-light);
 }
 
 body.light-mode .contact__container h2 {
