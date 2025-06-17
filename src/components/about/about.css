@@ -46,7 +46,7 @@
   section#about {
     background: var(--color-bg); /* Matching the home page background */
     color: var(--color-white);
-    padding: 4rem 0; /* Adjust margin */
+    padding: 0.5rem 0; /* Reduced padding */
     margin-top: 0; /* Remove margin to eliminate partition */
     margin-bottom: 0;
   }

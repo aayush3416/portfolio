@@ -243,7 +243,7 @@ nav a.active {
 /* ======== CONTACT SECTION STYLING ======== */
 #contact {
   background: var(--color-bg);
-  padding: 4rem 0;
+  padding: 0.5rem 0;
   position: relative;
   overflow: hidden;
   margin-top: 0;
@@ -532,7 +532,7 @@ body.light-mode .contact__option h5 {
 
 @media screen and (max-width: 768px) {
   #contact {
-    padding: 6rem 0;
+    padding: 0.5rem 0;
   }
   
   .contact__container h2 {

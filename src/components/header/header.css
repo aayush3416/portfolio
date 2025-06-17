@@ -33,7 +33,8 @@
     position: relative;
     overflow: hidden;
     background: var(--color-bg);
-    padding: 2rem 0;
+    padding: 0;
+    margin-bottom: 0;
   }
 
   header.dark {

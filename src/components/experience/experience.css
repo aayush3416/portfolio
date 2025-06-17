@@ -251,7 +251,7 @@ h5 {
 h2 {
     font-size: 3rem;
     text-align: center;
-    margin-bottom: 10rem;
+    margin-bottom: 0.5rem;
     color: var(--color-primary);
 }
 
@@ -259,7 +259,7 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  margin-bottom: 4rem;
+  margin-bottom: 0.5rem;
 }
 
 .experience__frontend,
@@ -655,7 +655,7 @@ body.light-mode .timeline-item::after {
 #experience {
   background: var(--color-bg);
   color: var(--color-white);
-  padding: 4rem 0;
+  padding: 0.5rem 0;
   margin-top: 0;
   margin-bottom: 0;
 }
