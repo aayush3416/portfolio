@@ -1,11 +1,12 @@
 import ME from '../../assests/me.png';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './header.css';
 import HeaderSocials from './HeaderSocials';
 import { FaSun, FaMoon, FaCode, FaRocket, FaBrain } from 'react-icons/fa';
 
 const Header = () => {
   const [darkMode, setDarkMode] = useState(true);
+  const imageContainerRef = useRef(null);
   const [currentTitle, setCurrentTitle] = useState(0);
 
   const titles = [
@@ -15,14 +16,26 @@ const Header = () => {
   ];
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.body.classList.toggle('dark-mode', !darkMode);
-    document.body.classList.toggle('light-mode', darkMode);
+    const next = !darkMode;
+    setDarkMode(next);
+    document.body.classList.toggle('dark-mode', next);
+    document.body.classList.toggle('light-mode', !next);
+    try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch {}
   };
 
   useEffect(() => {
-    document.body.classList.add('dark-mode');
-    
+    // Initialize theme from localStorage or system preference
+    try {
+      const stored = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const shouldDark = stored ? stored === 'dark' : prefersDark;
+      setDarkMode(shouldDark);
+      document.body.classList.toggle('dark-mode', shouldDark);
+      document.body.classList.toggle('light-mode', !shouldDark);
+    } catch {
+      document.body.classList.add('dark-mode');
+    }
+
     // Animated title rotation
     const titleInterval = setInterval(() => {
       setCurrentTitle((prev) => (prev + 1) % titles.length);
@@ -31,8 +44,37 @@ const Header = () => {
     return () => clearInterval(titleInterval);
   }, []);
 
+  useEffect(() => {
+    // Subtle 3D parallax on hero image
+    const el = imageContainerRef.current;
+    if (!el) return;
+    let rafId = 0;
+    const handleMove = (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      const rotateY = (x - 0.5) * 12; // degrees
+      const rotateX = (0.5 - y) * 12;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        el.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+    };
+    const handleLeave = () => {
+      cancelAnimationFrame(rafId);
+      el.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
+    };
+    el.classList.add('tilt-active');
+    el.addEventListener('mousemove', handleMove);
+    el.addEventListener('mouseleave', handleLeave);
+    return () => {
+      el.removeEventListener('mousemove', handleMove);
+      el.removeEventListener('mouseleave', handleLeave);
+    };
+  }, []);
+
   return (
-    <header className={darkMode ? 'dark' : 'light'}>
+    <header id="home" className={darkMode ? 'dark' : 'light'}>
       <button className="toggle-mode" onClick={toggleDarkMode}>
         {darkMode ? <FaSun /> : <FaMoon />}
         <span>{darkMode ? 'Light' : 'Dark'}</span>
@@ -42,7 +84,7 @@ const Header = () => {
         <div className="header__content">
           <div className="header__text">
             <h5 className="greeting">Hello, I'm</h5>
-            <h1 className="header__name">Aayush Soni</h1>
+            <h1 className="header__name shimmer">Aayush Soni</h1>
             
             <div className="title-container">
               <div className="animated-title">
@@ -65,7 +107,7 @@ const Header = () => {
           </div>
           
           <div className="header__image">
-            <div className="image-container">
+            <div className="image-container" ref={imageContainerRef}>
               <div className="floating-elements">
                 <div className="floating-element" style={{'--delay': '0s'}}>💻</div>
                 <div className="floating-element" style={{'--delay': '1s'}}>🚀</div>

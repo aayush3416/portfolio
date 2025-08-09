@@ -111,6 +111,20 @@
     animation: fadeInUp 1s ease-out 0.4s forwards;
   }
 
+  /* Shimmer gradient for name */
+  .header__name.shimmer {
+    background: linear-gradient(120deg, var(--color-white) 0%, var(--color-primary) 25%, var(--color-secondary) 50%, var(--color-white) 75%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    animation: shimmerMove 4s linear infinite, fadeInUp 1s ease-out 0.4s forwards;
+  }
+
+  @keyframes shimmerMove {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
   .title-container {
     height: 60px;
     overflow: hidden;
@@ -187,6 +201,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transform-style: preserve-3d;
+    transition: transform 300ms ease;
+  }
+
+  .image-container.tilt-active .profile-image,
+  .image-container.tilt-active .image-glow {
+    transform: translateZ(30px);
   }
 
   .profile-image {
@@ -218,11 +239,12 @@
     transform: translate(-50%, -50%);
     width: 320px;
     height: 320px;
-    background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+    background: radial-gradient(circle at 50% 50%, var(--color-primary) 0%, transparent 70%);
     border-radius: 50%;
     opacity: 0.3;
     z-index: 1;
     animation: pulse 4s ease-in-out infinite;
+    filter: blur(8px);
   }
 
   @keyframes pulse {
@@ -402,9 +424,24 @@
     z-index: -1;
   }
 
+  /* Gloss highlight */
+  .header__socials a::after {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.25), transparent 40%);
+    transform: rotate(25deg);
+    transition: opacity 300ms ease;
+    opacity: 0;
+  }
+
   .header__socials a:hover::before {
     left: 0;
   }
+  .header__socials a:hover::after { opacity: 1; }
 
   .header__socials a:hover {
     color: var(--color-white);

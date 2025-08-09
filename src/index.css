@@ -55,7 +55,8 @@ body {
   background: var(--color-bg);
   color: var(--color-white);
   line-height: 1.7;
-  background-image: url('./assets/bg-texture.png');
+  /* Fixed path: folder is `assests` in this project */
+  background-image: url('./assests/bg-texture.png');
   transition: var(--transition);
   overflow-x: hidden;
   position: relative;

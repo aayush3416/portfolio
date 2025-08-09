@@ -107,16 +107,16 @@ const Nav = () => {
           👨‍💻
         </a>
         <a 
-          href="#experiences" 
+          href="#experience" 
           data-tooltip="Experience"
-          className={activeNav === '#experiences' ? 'active' : ''}
+          className={activeNav === '#experience' ? 'active' : ''}
         >
           💼
         </a>
         <a 
-          href="#projects" 
+          href="#portfolio" 
           data-tooltip="Projects"
-          className={activeNav === '#projects' ? 'active' : ''}
+          className={activeNav === '#portfolio' ? 'active' : ''}
         >
           🚀
         </a>
@@ -129,21 +129,13 @@ const Nav = () => {
         </a>
       </nav>
       
-      <section id="home" className="fade-in">
-        <Header />
-      </section>
+      <Header />
       
-      <section id="about" className="fade-in">
-        <About />
-      </section>
+      <About />
       
-      <section id="experiences" className="fade-in">
-        <Experience />
-      </section>
+      <Experience />
       
-      <section id="projects" className="fade-in">
-        <Portfolio />
-      </section>
+      <Portfolio />
       
       <section id="contact" className="fade-in">
         <div className="container contact__container">
