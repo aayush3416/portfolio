@@ -1,6 +1,7 @@
 import ME from '../../assests/me.png';
 import React, { useState, useEffect, useRef } from 'react';
 import './header.css';
+import './CoolEffects.css';
 import HeaderSocials from './HeaderSocials';
 import { FaSun, FaMoon, FaCode, FaRocket, FaBrain } from 'react-icons/fa';
 
@@ -79,33 +80,33 @@ const Header = () => {
         {darkMode ? <FaSun /> : <FaMoon />}
         <span>{darkMode ? 'Light' : 'Dark'}</span>
       </button>
-      
+
       <div className="container header__container">
         <div className="header__content">
           <div className="header__text">
             <h5 className="greeting">Hello, I'm</h5>
             <h1 className="header__name shimmer">Aayush Soni</h1>
-            
+
             <div className="title-container">
               <div className="animated-title">
                 {titles[currentTitle].icon}
                 <span>{titles[currentTitle].text}</span>
               </div>
             </div>
-            
+
             <p className="header__description">
-              Mechatronics Engineering student passionate about creating innovative solutions 
+              Mechatronics Engineering student passionate about creating innovative solutions
               through code and cutting-edge technology.
             </p>
-            
+
             <HeaderSocials />
-            
+
             <div className="header__cta">
               <a href="#about" className="btn">Get to Know Me</a>
               <a href="#contact" className="btn btn-primary">Let's Connect</a>
             </div>
           </div>
-          
+
           <div className="header__image">
             <div className="image-container" ref={imageContainerRef}>
               <div className="floating-elements">
@@ -119,7 +120,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="scroll-indicator">
           <div className="scroll-line"></div>
           <span>Scroll to explore</span>

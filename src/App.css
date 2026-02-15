@@ -1,103 +1,4 @@
-/* ======== PRANK 404 ERROR SCREEN ======== */
-.prank-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #0a0a0a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  font-family: 'Courier New', monospace;
-  animation: fadeIn 0.5s ease-out;
-}
-
-.error-404 {
-  text-align: center;
-  color: #ff4757;
-  position: relative;
-  max-width: 800px;
-  padding: 2rem;
-}
-
-.error-content {
-  position: relative;
-  z-index: 2;
-}
-
-.error-code {
-  font-size: 8rem;
-  font-weight: bold;
-  margin: 0;
-  text-shadow: 
-    0 0 10px #ff4757,
-    0 0 20px #ff4757,
-    0 0 30px #ff4757;
-  animation: glitchNumber 2s infinite;
-}
-
-.error-title {
-  font-size: 2.5rem;
-  color: #ff6b9d;
-  margin: 1rem 0;
-  font-weight: 600;
-  animation: textFlicker 1.5s infinite alternate;
-}
-
-.error-message {
-  font-size: 1.2rem;
-  color: #ddd;
-  line-height: 1.6;
-  margin: 2rem 0;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.error-details {
-  background: rgba(255, 71, 87, 0.1);
-  border: 1px solid #ff4757;
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin: 2rem 0;
-  text-align: left;
-}
-
-.error-details p {
-  margin: 0.5rem 0;
-  color: #ff9999;
-  font-family: 'Courier New', monospace;
-}
-
-.error-details strong {
-  color: #ff4757;
-}
-
-/* Joke Reveal Animation */
-.joke-reveal {
-  margin-top: 3rem;
-  animation: slideInFromBottom 0.8s ease-out;
-}
-
-.joke-text {
-  font-size: 3rem;
-  color: #4CAF50;
-  margin: 1rem 0;
-  font-weight: bold;
-  text-shadow: 0 0 20px #4CAF50;
-  animation: bounce 0.8s ease-out;
-}
-
-.joke-subtitle {
-  font-size: 1.3rem;
-  color: #81C784;
-  margin: 1rem 0;
-  font-style: italic;
-}
-
-/* Loading Spinner */
+/* App styles */
 .loading-spinner {
   width: 40px;
   height: 40px;
@@ -169,12 +70,6 @@
 
 /* Website Entrance Animation */
 .App {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.App.website-enter {
   opacity: 1;
   transform: scale(1);
 }
@@ -186,24 +81,24 @@
 }
 
 @keyframes glitchNumber {
-  0%, 100% { 
-    transform: translate(0); 
+  0%, 100% {
+    transform: translate(0);
     filter: hue-rotate(0deg);
   }
-  10% { 
-    transform: translate(-2px, -2px); 
+  10% {
+    transform: translate(-2px, -2px);
     filter: hue-rotate(90deg);
   }
-  20% { 
-    transform: translate(2px, 2px); 
+  20% {
+    transform: translate(2px, 2px);
     filter: hue-rotate(180deg);
   }
-  30% { 
-    transform: translate(-1px, 1px); 
+  30% {
+    transform: translate(-1px, 1px);
     filter: hue-rotate(270deg);
   }
-  40% { 
-    transform: translate(1px, -1px); 
+  40% {
+    transform: translate(1px, -1px);
     filter: hue-rotate(360deg);
   }
 }
@@ -308,25 +203,25 @@
   .error-code {
     font-size: 5rem;
   }
-  
+
   .error-title {
     font-size: 2rem;
   }
-  
+
   .error-message {
     font-size: 1rem;
   }
-  
+
   .joke-text {
     font-size: 2rem;
   }
-  
+
   .glitch-text {
     font-size: 2.5rem;
     top: 15%;
     right: 5%;
   }
-  
+
   .floating-errors span {
     font-size: 1.5rem;
   }
@@ -336,20 +231,20 @@
   .error-404 {
     padding: 1rem;
   }
-  
+
   .error-code {
     font-size: 4rem;
   }
-  
+
   .error-title {
     font-size: 1.5rem;
   }
-  
+
   .joke-text {
     font-size: 1.5rem;
   }
-  
+
   .joke-subtitle {
     font-size: 1rem;
   }
-} 
+}

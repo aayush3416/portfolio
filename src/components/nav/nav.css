@@ -3,14 +3,16 @@ nav {
     top: 50%;
     right: 2rem;
     transform: translateY(-50%);
-    background: var(--color-bg-card);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-lg);
+    background: rgba(10, 10, 26, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    border-radius: 30px;
     padding: 1rem 0.5rem;
     z-index: 100;
     transition: var(--transition);
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
 }
 
 nav::before {
@@ -20,8 +22,8 @@ nav::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(253, 121, 168, 0.1));
-    border-radius: var(--border-radius-lg);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 0, 128, 0.15));
+    border-radius: 30px;
     opacity: 0;
     transition: var(--transition);
     z-index: -1;
@@ -29,6 +31,13 @@ nav::before {
 
 nav:hover::before {
     opacity: 1;
+}
+
+nav:hover {
+    border-color: rgba(0, 212, 255, 0.6);
+    box-shadow: 0 12px 48px rgba(0, 212, 255, 0.4),
+                0 0 80px rgba(255, 0, 128, 0.2),
+                inset 0 0 30px rgba(255, 255, 255, 0.1);
 }
 
 nav a {
@@ -57,11 +66,12 @@ nav a::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(135deg, #00d4ff, #ff0080, #00ff88);
     border-radius: 50%;
     transform: scale(0);
     transition: var(--transition);
     z-index: -1;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
 }
 
 nav a::after {
@@ -95,7 +105,8 @@ nav a:hover::after {
 
 nav a:hover {
     color: var(--color-white);
-    transform: scale(1.1);
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
 }
 
 nav a.active {
@@ -177,7 +188,7 @@ nav {
     nav {
         right: 1.5rem;
     }
-    
+
     nav a::after {
         display: none;
     }
@@ -194,17 +205,17 @@ nav {
         border-radius: var(--border-radius);
         animation: none;
     }
-    
+
     nav a {
         width: 45px;
         height: 45px;
         margin: 0 0.3rem;
     }
-    
+
     nav a::after {
         display: none;
     }
-    
+
     .nav-indicator {
         display: none;
     }
@@ -524,7 +535,7 @@ body.light-mode .contact__option h5 {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
   }
-  
+
   .contact__option {
     padding: 2rem 1.5rem;
   }
@@ -534,20 +545,20 @@ body.light-mode .contact__option h5 {
   #contact {
     padding: 0.5rem 0;
   }
-  
+
   .contact__container h2 {
     font-size: 2.5rem;
   }
-  
+
   .contact__options {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .contact__option {
     padding: 2rem;
   }
-  
+
 
 }
 
@@ -555,22 +566,22 @@ body.light-mode .contact__option h5 {
   .contact__container h2 {
     font-size: 2rem;
   }
-  
+
   .contact__intro {
     font-size: 1rem;
     margin-bottom: 3rem;
   }
-  
+
   .contact__option {
     padding: 1.5rem;
   }
-  
+
   .contact__option-icon {
     font-size: 2.5rem;
   }
-  
 
-  
+
+
   .floating-shape {
     font-size: 1.5rem;
   }
