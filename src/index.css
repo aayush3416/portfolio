@@ -12,9 +12,9 @@
 
 :root {
   /* Dark Mode Colors - Enhanced */
-  --color-bg: #0a0a1a;
-  --color-bg-variant: #1a1a3e;
-  --color-bg-card: rgba(26, 26, 46, 0.7);
+  --color-bg: #000000;
+  --color-bg-variant: #0d0d0d;
+  --color-bg-card: rgba(15, 15, 15, 0.85);
   --color-primary: #00d4ff;
   --color-primary-variant: rgba(0, 212, 255, 0.3);
   --color-secondary: #ff0080;
@@ -25,9 +25,9 @@
   --color-border: rgba(255, 255, 255, 0.15);
 
   /* Light Mode Colors */
-  --color-bg-light: #f8fafc;
-  --color-bg-variant-light: #e2e8f0;
-  --color-bg-card-light: rgba(255, 255, 255, 0.9);
+  --color-bg-light: #ffffff;
+  --color-bg-variant-light: #f0f0f0;
+  --color-bg-card-light: rgba(255, 255, 255, 0.95);
   --color-primary-light: #6c5ce7;
   --color-primary-variant-light: rgba(108, 92, 231, 0.2);
   --color-secondary-light: #ff9f40;

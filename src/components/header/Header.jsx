@@ -109,12 +109,6 @@ const Header = () => {
 
           <div className="header__image">
             <div className="image-container" ref={imageContainerRef}>
-              <div className="floating-elements">
-                <div className="floating-element" style={{'--delay': '0s'}}>💻</div>
-                <div className="floating-element" style={{'--delay': '1s'}}>🚀</div>
-                <div className="floating-element" style={{'--delay': '2s'}}>⚡</div>
-                <div className="floating-element" style={{'--delay': '3s'}}>🎯</div>
-              </div>
               <img src={ME} alt="Aayush Soni" className="profile-image" />
               <div className="image-glow"></div>
             </div>

@@ -1,226 +1,173 @@
-import React, { useEffect, useRef } from 'react'
-import './portfolio.css'
-import IMG0 from "../../assests/project0.png";
-import IMG1 from '../../assests/project1.png'
-import IMG2 from '../../assests/project2.png'
-import IMG3 from '../../assests/project3.png'
-import IMG4 from '../../assests/project4.png'
-import IMG5 from '../../assests/project5.jpeg'
-import IMG6 from '../../assests/project6.png'
+import React, { useEffect, useState, useCallback } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import './portfolio.css';
+
+const projectsData = [
+  {
+    id: "storefront-ecommerce",
+    title: "StoreFront Ecommerce",
+    description:
+      "A full-stack e-commerce platform with product listings, cart management, user authentication, and payment integration. Deployed on AWS.",
+    href: "https://github.com/aayush3416/storefront-ecommerce",
+    image:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.0.3&q=80&w=1080",
+  },
+  {
+    id: "talk-a-tive",
+    title: "Talk-a-tive",
+    description:
+      "A real-time chat application featuring group chats, one-on-one messaging, typing indicators, and user search. Powered by Socket.io.",
+    href: "https://github.com/aayush3416/talk-a-tive",
+    image:
+      "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.0.3&q=80&w=1080",
+  },
+  {
+    id: "expenses-tracker",
+    title: "Expenses Tracker",
+    description:
+      "A personal finance tracker with interactive charts, category breakdowns, and transaction history for smarter budgeting.",
+    href: "https://github.com/aayush3416/your_expenses_tracker",
+    image:
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.0.3&q=80&w=1080",
+  },
+  {
+    id: "tic-tac-toe",
+    title: "Tic-Tac-Toe Robot",
+    description:
+      "An AI-powered Tic-Tac-Toe game with an unbeatable robot opponent using the minimax algorithm. Features multiple difficulty levels.",
+    href: "https://github.com/aayush3416/Tic-Tac-Toe",
+    image:
+      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.0.3&q=80&w=1080",
+  },
+  {
+    id: "personal-blog",
+    title: "My Personal Blog",
+    description:
+      "A full-featured blog platform with rich text editing, user comments, tagging, and a responsive reading experience.",
+    href: "https://github.com/aayush3416/aayush-blog",
+    image:
+      "https://images.unsplash.com/photo-1499750310107-5fef28a66643?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.0.3&q=80&w=1080",
+  },
+  {
+    id: "musical-time-machine",
+    title: "Musical Time Machine",
+    description:
+      "Travel back in time through music! Enter any date and get a Spotify playlist of the top hits from that era.",
+    href: "https://github.com/aayush3416/musical-time-machine",
+    image:
+      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.0.3&q=80&w=1080",
+  },
+];
 
 const Portfolio = () => {
-  const portfolioRef = useRef(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: 'start',
+    slidesToScroll: 1,
+    containScroll: 'trimSnaps',
+    breakpoints: {
+      '(max-width: 768px)': { dragFree: true },
+    },
+  });
+
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState([]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
+    setCurrentSlide(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
 
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const portfolioItems = entry.target.querySelectorAll('.portfolio__item');
-          portfolioItems.forEach((item, index) => {
-            setTimeout(() => {
-              item.classList.add('animate');
-            }, index * 150);
-          });
-        }
-      });
-    }, observerOptions);
-
-    if (portfolioRef.current) {
-      observer.observe(portfolioRef.current);
-    }
-
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+    onSelect();
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+    emblaApi.on('reInit', () => setScrollSnaps(emblaApi.scrollSnapList()));
     return () => {
-      observer.disconnect();
+      emblaApi.off('select', onSelect);
+      emblaApi.off('reInit', onSelect);
     };
-  }, []);
+  }, [emblaApi, onSelect]);
 
   return (
-    <section id="portfolio">
-      <h5>My Recent Work</h5>
-      <h2>Projects</h2>
+    <section id="portfolio" className="gallery-section">
+      <div className="gallery-header">
+        <div className="gallery-header__text">
+          <h5>My Recent Work</h5>
+          <h2>Projects</h2>
+          <p className="gallery-header__description">
+            A showcase of my recent work — from full-stack web apps to creative experiments.
+          </p>
+        </div>
+        <div className="gallery-nav-buttons">
+          <button
+            className="gallery-nav-btn"
+            onClick={() => emblaApi?.scrollPrev()}
+            disabled={!canScrollPrev}
+            aria-label="Previous slide"
+          >
+            <ArrowLeft size={20} />
+          </button>
+          <button
+            className="gallery-nav-btn"
+            onClick={() => emblaApi?.scrollNext()}
+            disabled={!canScrollNext}
+            aria-label="Next slide"
+          >
+            <ArrowRight size={20} />
+          </button>
+        </div>
+      </div>
 
-      <div className="container portfolio__container" ref={portfolioRef}>
-        <article className="portfolio__item">
-          <div className="portfolio__item__image">
-            <img src={IMG0} alt="StoreFront Ecommerce" className="portfolio__item-projects-image" />
-          </div>
-          <h3>StoreFront Ecommerce</h3>
-          <div className="portfolio__item-cta">
-            <a
-              href="https://github.com/aayush3416/storefront-ecommerce"
-              className="btn"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Github
-            </a>
-            <a
-              href="http://storefront-env.eba-xz9bwhj2.us-west-2.elasticbeanstalk.com/"
-              className="btn btn-primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Live Demo
-            </a>
-          </div>
-        </article>
-        <article className="portfolio__item">
-          <div className="portfolio__item__image">
-            <img src={IMG1} alt="Talk-a-tive" className="portfolio__item-projects-image" />
-          </div>
-          <h3>Talk-a-tive</h3>
-          <div className="portfolio__item-cta">
-            <a
-              href="https://github.com/aayush3416/talk-a-tive"
-              className="btn"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Github
-            </a>
-            <a
-              href="https://talk-a-tive.vercel.app/"
-              className="btn btn-primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Live Demo
-            </a>
-          </div>
-        </article>
+      <div className="gallery-carousel" ref={emblaRef}>
+        <div className="gallery-carousel__container">
+          {projectsData.map((item) => (
+            <div className="gallery-carousel__slide" key={item.id}>
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="gallery-card"
+              >
+                <div className="gallery-card__image-wrapper">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="gallery-card__image"
+                  />
+                  <div className="gallery-card__overlay" />
+                </div>
+                <div className="gallery-card__content">
+                  <h3 className="gallery-card__title">{item.title}</h3>
+                  <p className="gallery-card__description">{item.description}</p>
+                  <span className="gallery-card__link">
+                    View Project <ArrowRight size={16} />
+                  </span>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
 
-        <article className="portfolio__item">
-          <div className="portfolio__item__image">
-            <img src={IMG2} alt="Expenses Tracker" className="portfolio__item-projects-image" />
-          </div>
-          <h3>Expenses Tracker</h3>
-          <div className="portfolio__item-cta">
-            <a
-              href="https://github.com/aayush3416/your_expenses_tracker"
-              className="btn"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Github
-            </a>
-            <a
-              href="https://github.com/aayush3416/your_expenses_tracker"
-              className="btn btn-primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Live Demo
-            </a>
-          </div>
-        </article>
-
-        <article className="portfolio__item">
-          <div className="portfolio__item__image">
-            <img src={IMG3} alt="Tic-Tac-Toe Robot" className="portfolio__item-projects-image" />
-          </div>
-          <h3>Tic-Tac-Toe Robot</h3>
-          <div className="portfolio__item-cta">
-            <a
-              href="https://github.com/aayush3416/Tic-Tac-Toe"
-              className="btn"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Github
-            </a>
-            <a
-              href="https://github.com/aayush3416/Tic-Tac-Toe"
-              className="btn btn-primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Live Demo
-            </a>
-          </div>
-        </article>
-
-        <article className="portfolio__item">
-          <div className="portfolio__item__image">
-            <img src={IMG4} alt="My Personal Blog" className="portfolio__item-projects-image" />
-          </div>
-          <h3>My Personal Blog</h3>
-          <div className="portfolio__item-cta">
-            <a
-              href="https://github.com/aayush3416/aayush-blog"
-              className="btn"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Github
-            </a>
-            <a
-              href="https://aayush-blog.herokuapp.com/"
-              className="btn btn-primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Live Demo
-            </a>
-          </div>
-        </article>
-
-        <article className="portfolio__item">
-          <div className="portfolio__item__image">
-            <img src={IMG5} alt="Musical Time Machine" className="portfolio__item-projects-image" />
-          </div>
-          <h3>Musical Time Machine</h3>
-          <div className="portfolio__item-cta">
-            <a
-              href="https://github.com/aayush3416/musical-time-machine"
-              className="btn"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Github
-            </a>
-            <a
-              href="https://devpost.com/software/musical-time-machine"
-              className="btn btn-primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Live Demo
-            </a>
-          </div>
-        </article>
-
-        {/* <article className="portfolio__item">
-          <div className="portfolio__item__image">
-            <img src={IMG6} alt="Twitter Complaint Bot" className="portfolio__item-projects-image" />
-          </div>
-          <h3>Twitter Complaint Bot</h3>
-          <div className="portfolio__item-cta">
-            <a
-              href="https://github.com/aayush3416/twitter-complain-bot"
-              className="btn"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Github
-            </a>
-            <a
-              href="https://devpost.com/software/twitter-complain-bot"
-              className="btn btn-primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Live Demo
-            </a>
-          </div>
-        </article> */}
+      <div className="gallery-dots">
+        {scrollSnaps.map((_, index) => (
+          <button
+            key={index}
+            className={`gallery-dot ${currentSlide === index ? 'gallery-dot--active' : ''}`}
+            onClick={() => emblaApi?.scrollTo(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </section>
   );
-}
+};
 
 export default Portfolio;
