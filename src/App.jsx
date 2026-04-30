@@ -1,13 +1,12 @@
 import React from 'react'
-import Header from './components/header/Header'
+import './App.css'
 import Nav from './components/nav/Nav'
 
-export const App = () => {
+const App = () => {
   return (
-    <>
-        <Header/>
-        <Nav/>
-    </>
+    <div className="App">
+      <Nav />
+    </div>
   )
 }
 

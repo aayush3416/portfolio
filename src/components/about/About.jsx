@@ -1,100 +1,49 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import './about.css';
-import { FaAward, FaGraduationCap, FaCode } from 'react-icons/fa';
-import { GiBookmarklet } from "react-icons/gi";
-import { VscFolderLibrary } from "react-icons/vsc";
+import { FaAward } from 'react-icons/fa';
+import { GiBookmarklet } from 'react-icons/gi';
+import { VscFolderLibrary } from 'react-icons/vsc';
 
 const About = () => {
-  const aboutRef = useRef(null);
-  const contentRef = useRef(null);
-  const cardsRef = useRef([]);
-
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-
-          // Add staggered animation for cards
-          if (entry.target.classList.contains('about__cards')) {
-            const cards = entry.target.querySelectorAll('.about__card');
-            cards.forEach((card, index) => {
-              setTimeout(() => {
-                card.classList.add('animate');
-              }, index * 200);
-            });
-          }
-        }
-      });
-    }, observerOptions);
-
-    // Observe elements with enhanced timing
-    if (contentRef.current) {
-      setTimeout(() => observer.observe(contentRef.current), 300);
-    }
-
-    // Observe cards container for staggered animation
-    const cardsContainer = document.querySelector('.about__cards');
-    if (cardsContainer) {
-      setTimeout(() => observer.observe(cardsContainer), 500);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  const addToRefs = (el) => {
-    if (el && !cardsRef.current.includes(el)) {
-      cardsRef.current.push(el);
-    }
-  };
-
   return (
-    <section id="about" ref={aboutRef}>
-      <h5>Get to Know</h5>
-      <h2>About Me</h2>
+    <section id="about">
+      <div className="container">
+        <span className="section-label reveal">About</span>
+        <h2 className="reveal">A bit about me</h2>
 
-      <div className="container about__container">
-        <div className="about__content" ref={contentRef}>
-          <div className="about__cards">
-            <article className="about__card" ref={addToRefs}>
-              <FaAward className="about__icon" />
-              <h5>Experience</h5>
-              <small>3+ Years Working</small>
-            </article>
-
-            <article className="about__card" ref={addToRefs}>
-              <GiBookmarklet className="about__icon" />
-              <h5>Education</h5>
-              <small>Mechatronics Engineering</small>
-            </article>
-
-            <article className="about__card" ref={addToRefs}>
-              <VscFolderLibrary className="about__icon" />
-              <h5>Projects</h5>
-              <small>20+ Completed</small>
-            </article>
+        <div className="about__grid reveal">
+          <div className="about__card">
+            <FaAward className="about__card-icon" />
+            <h4>Experience</h4>
+            <span>3+ Years Working</span>
           </div>
 
-          <p>
-            Hello! I am a third-year Mechatronics Engineering student at the University of Waterloo,
-            where I intend to specialize into Software Engineering or Artificial Intelligence. I am a firm believer
-            in working smart and not hard. I am always looking for new opportunities, so feel free to reach out!
-          </p>
+          <div className="about__card">
+            <GiBookmarklet className="about__card-icon" />
+            <h4>Education</h4>
+            <span>Mechatronics Engineering</span>
+          </div>
 
-          <a href="#footer" className="btn btn-primary">
-            Let's Talk
-          </a>
+          <div className="about__card">
+            <VscFolderLibrary className="about__card-icon" />
+            <h4>Projects</h4>
+            <span>20+ Completed</span>
+          </div>
+        </div>
+
+        <p className="about__text reveal">
+          I'm a third-year Mechatronics Engineering student at the University of Waterloo,
+          where I intend to specialize in Software Engineering or Artificial Intelligence.
+          I'm a firm believer in working smart — not just hard. I'm always looking for new
+          opportunities to build impactful software, so feel free to reach out!
+        </p>
+
+        <div className="reveal">
+          <a href="#contact" className="btn btn-primary">Let's Talk</a>
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default About;

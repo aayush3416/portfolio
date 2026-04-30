@@ -1,161 +1,49 @@
-import React from 'react'
-import './skills.css'
-import {BsPatchCheckFill} from 'react-icons/bs'
+import React from 'react';
+import './skills.css';
 
 const Skills = () => {
+  const skillGroups = [
+    {
+      label: 'Languages',
+      skills: ['Python', 'JavaScript', 'TypeScript', 'Golang', 'HTML5', 'CSS3'],
+    },
+    {
+      label: 'Frontend',
+      skills: ['React', 'Next.js', 'Angular', 'AngularJS', 'Bootstrap'],
+    },
+    {
+      label: 'Backend',
+      skills: ['Node.js', 'Express.js', 'Flask', 'GraphQL'],
+    },
+    {
+      label: 'Data & Infra',
+      skills: ['PostgreSQL', 'MongoDB', 'Firebase', 'Redis', 'Dgraph', 'Docker', 'Kubernetes', 'Git'],
+    },
+  ];
+
   return (
     <section id="skills">
-      <h2>My Technicals Skills</h2>
+      <div className="container">
+        <span className="section-label reveal">Skills</span>
+        <h2 className="reveal">Technologies I work with</h2>
 
-      <div className="container skills__container">
-        <div className="skills_frontend">
-          <h3>Frontend Development</h3>
-          <div className="skills__content">
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>HTML5</h4>
-                <small className="text-light">Experienced</small>
+        <div className="skills__groups reveal">
+          {skillGroups.map((group) => (
+            <div className="skills__group" key={group.label}>
+              <h4 className="skills__group-label">{group.label}</h4>
+              <div className="skills__pills">
+                {group.skills.map((skill) => (
+                  <span className="skills__pill" key={skill}>
+                    {skill}
+                  </span>
+                ))}
               </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>CSS3</h4>
-                <small className="text-light">Experienced</small>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>Bootstrap</h4>
-                <small className="text-light">Experienced</small>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>React</h4>
-                <small className="text-light">Intermidate</small>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>Angular</h4>
-                <small className="text-light">Intermidate</small>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>AngularJS</h4>
-                <small className="text-light">Intermidate</small>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>Nextjs</h4>
-                <small className="text-light">Basic</small>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>JavaScript</h4>
-                <small className="text-light">Intermidate</small>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <div className="skills__backend">
-          <h3>Backend Development</h3>
-          <div className="skills__content">
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>Python</h4>
-                <small className="text-light">Experienced</small>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>Golang</h4>
-                <small className="text-light">Intermidate</small>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>Typescript</h4>
-                <small className="text-light">Intermidate</small>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>Node.js</h4>
-                <small className="text-light">Experienced</small>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>Flask</h4>
-                <small className="text-light">Experienced</small>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>Postgresql</h4>
-                <small className="text-light">Experienced</small>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>Dgraph</h4>
-                <small className="text-light">Intermidate</small>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>Firebase</h4>
-                <small className="text-light">Basic</small>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <BsPatchCheckFill className="skills__details-icon" />
-              <div>
-                <h4>MongoDB</h4>
-                <small className="text-light">Intermidate</small>
-              </div>
-            </article>
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
-}
+};
 
-export default Skills
+export default Skills;

@@ -1,195 +1,147 @@
 import React, { useEffect, useState } from 'react';
 import './nav.css';
 import Header from '../header/Header';
-import About from '../about/About';
 import Experience from '../experience/Experience';
 import Portfolio from '../portfolio/Portfolio';
 
 const Nav = () => {
-  const [activeNav, setActiveNav] = useState("#home");
+  const [activeNav, setActiveNav] = useState('#home');
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll("nav a");
+    const sections = document.querySelectorAll('section');
 
-    // Intersection Observer for better performance
-    const options = {
-      threshold: 0.3,
-      rootMargin: '-80px 0px -80px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveNav(`#${entry.target.id}`);
-          entry.target.classList.add('visible');
-        }
-      });
-    }, options);
-
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    // Scroll progress indicator
-    const updateScrollProgress = () => {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollTop = window.pageYOffset;
-      const scrollProgress = (scrollTop / scrollHeight) * 100;
-      
-      document.documentElement.style.setProperty('--scroll-progress', `${scrollProgress}%`);
-    };
-
-    window.addEventListener('scroll', updateScrollProgress);
-
-    // Initial check for sections in view
-    const checkInitialVisibility = () => {
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          section.classList.add('visible');
-        }
-      });
-    };
-
-    // Smooth scroll behavior
-    const smoothScrollToSection = (e) => {
-      e.preventDefault();
-      const targetId = e.target.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
-      
-      if (targetSection) {
-        const headerOffset = 80;
-        const elementPosition = targetSection.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveNav(`#${entry.target.id}`);
+          }
         });
-      }
+      },
+      { threshold: 0.3, rootMargin: '-80px 0px -80px 0px' }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
     };
+    window.addEventListener('scroll', handleScroll);
 
-    // Add smooth scroll to nav links
-    navLinks.forEach(link => {
-      link.addEventListener('click', smoothScrollToSection);
-    });
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+    );
 
-    checkInitialVisibility();
+    document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
     return () => {
-      sections.forEach((section) => {
-        observer.unobserve(section);
-      });
-      window.removeEventListener('scroll', updateScrollProgress);
-      navLinks.forEach(link => {
-        link.removeEventListener('click', smoothScrollToSection);
-      });
+      observer.disconnect();
+      revealObserver.disconnect();
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
+  const navLinks = [
+    { href: '#home', label: 'Home' },
+    { href: '#experience', label: 'Experience' },
+    { href: '#portfolio', label: 'Projects' },
+    { href: '#contact', label: 'Contact' },
+  ];
+
   return (
     <>
-      <nav>
-        <div className="nav-indicator"></div>
-        <a 
-          href="#home" 
-          data-tooltip="Home"
-          className={activeNav === '#home' ? 'active' : ''}
-        >
-          🏠
-        </a>
-        <a 
-          href="#about" 
-          data-tooltip="About"
-          className={activeNav === '#about' ? 'active' : ''}
-        >
-          👨‍💻
-        </a>
-        <a 
-          href="#experience" 
-          data-tooltip="Experience"
-          className={activeNav === '#experience' ? 'active' : ''}
-        >
-          💼
-        </a>
-        <a 
-          href="#portfolio" 
-          data-tooltip="Projects"
-          className={activeNav === '#portfolio' ? 'active' : ''}
-        >
-          🚀
-        </a>
-        <a 
-          href="#contact" 
-          data-tooltip="Contact"
-          className={activeNav === '#contact' ? 'active' : ''}
-        >
-          📧
-        </a>
-      </nav>
-      
-      <Header />
-      
-      <About />
-      
-      <Experience />
-      
-      <Portfolio />
-      
-      <section id="contact" className="fade-in">
-        <div className="container contact__container">
-          <h5>Get In Touch</h5>
-          <h2>Contact Me</h2>
-          <p className="contact__intro">
-            Ready to collaborate on something amazing? Let's connect and bring your ideas to life!
-          </p>
-          
-          <div className="contact__options">
-            <article className="contact__option">
-              <div className="contact__option-icon">
-                📧
-              </div>
-              <h4>Email</h4>
-              <h5>aayushsoni3416@gmail.com</h5>
-              <a href="mailto:aayushsoni3416@gmail.com" className="btn btn-primary">
-                Send a message
+      <nav className={`top-nav ${scrolled ? 'scrolled' : ''}`}>
+        <div className="nav__container">
+          <a href="#home" className="nav__logo">
+            AS<span className="nav__logo-dot">.</span>
+          </a>
+          <div className="nav__links">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`nav__link ${activeNav === link.href ? 'active' : ''}`}
+              >
+                {link.label}
               </a>
-            </article>
-            
-            <article className="contact__option">
-              <div className="contact__option-icon">
-                💼
-              </div>
-              <h4>LinkedIn</h4>
-              <h5>Let's connect professionally</h5>
-              <a href="https://www.linkedin.com/in/aayush-soni-8282bb200/" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                Connect with me
-              </a>
-            </article>
-            
-            <article className="contact__option">
-              <div className="contact__option-icon">
-                🚀
-              </div>
-              <h4>GitHub</h4>
-              <h5>Check out my code</h5>
-              <a href="https://github.com/aayush3416" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                View projects
-              </a>
-            </article>
+            ))}
           </div>
-          
-          <div className="contact__floating">
-            <div className="floating-shape shape-1">✨</div>
-            <div className="floating-shape shape-2">💫</div>
-            <div className="floating-shape shape-3">🌟</div>
-            <div className="floating-shape shape-4">⚡</div>
+        </div>
+      </nav>
+
+      <Header />
+      <Experience />
+      <Portfolio />
+
+      <section id="contact">
+        <div className="container">
+          <span className="section-label reveal">Contact</span>
+          <h2 className="reveal">Let's work together</h2>
+          <p className="contact__intro reveal">
+            Ready to collaborate on something amazing? Let's connect and bring ideas to life.
+          </p>
+
+          <div
+            className="contact__grid reveal"
+            onMouseMove={(e) => {
+              for (const card of document.querySelectorAll('.contact__card')) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+              }
+            }}
+          >
+            <a href="mailto:aayush.soni@uwaterloo.ca" className="contact__card">
+              <div className="contact__card-icon">✉</div>
+              <h4>Email</h4>
+              <span className="contact__card-detail">aayush.soni@uwaterloo.ca</span>
+              <span className="contact__card-action">Send a message →</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/aayush-soni-8282bb200/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact__card"
+            >
+              <div className="contact__card-icon">in</div>
+              <h4>LinkedIn</h4>
+              <span className="contact__card-detail">Let's connect professionally</span>
+              <span className="contact__card-action">Connect →</span>
+            </a>
+
+            <a
+              href="https://github.com/aayush3416"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact__card"
+            >
+              <div className="contact__card-icon">gh</div>
+              <h4>GitHub</h4>
+              <span className="contact__card-detail">Check out my code</span>
+              <span className="contact__card-action">View profile →</span>
+            </a>
           </div>
         </div>
       </section>
+
+      <footer className="site-footer">
+        <div className="container">
+          <p>© {new Date().getFullYear()} Aayush Soni</p>
+        </div>
+      </footer>
     </>
   );
-}
+};
 
 export default Nav;
