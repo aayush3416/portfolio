@@ -26,6 +26,9 @@ const Nav = () => {
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      if (window.scrollY < 100) {
+        setActiveNav('#home');
+      }
     };
     window.addEventListener('scroll', handleScroll);
 
@@ -60,7 +63,7 @@ const Nav = () => {
     <>
       <nav className={`top-nav ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav__container">
-          <a href="#home" className="nav__logo">
+          <a href="#home" className="nav__logo" onClick={() => setActiveNav('#home')}>
             AS<span className="nav__logo-dot">.</span>
           </a>
           <div className="nav__links">
@@ -69,6 +72,7 @@ const Nav = () => {
                 key={link.href}
                 href={link.href}
                 className={`nav__link ${activeNav === link.href ? 'active' : ''}`}
+                onClick={() => setActiveNav(link.href)}
               >
                 {link.label}
               </a>
