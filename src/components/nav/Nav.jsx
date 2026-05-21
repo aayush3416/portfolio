@@ -113,7 +113,7 @@ const Nav = () => {
             </a>
 
             <a
-              href="https://www.linkedin.com/in/aayush-soni-8282bb200/"
+              href="https://www.linkedin.com/in/aayush3416/"
               target="_blank"
               rel="noopener noreferrer"
               className="contact__card"

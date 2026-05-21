@@ -38,7 +38,7 @@ const Header = () => {
           </p>
 
           <div className="header__socials">
-            <a href="https://www.linkedin.com/in/aayush-soni-8282bb200/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/aayush3416/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <FaLinkedin />
             </a>
             <a href="https://github.com/aayush3416" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
